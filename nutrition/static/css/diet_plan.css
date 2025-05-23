@@ -1,0 +1,401 @@
+/* Diet Plan Page Styling */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+
+:root {
+  --primary-color: #87B53D;
+  --primary-dark: #6a9230;
+  --secondary-color: #814F4F;
+  --accent-color: #FFC107;
+  --success-color: #28a745;
+  --warning-color: #ffc107;
+  --danger-color: #dc3545;
+  --info-color: #17a2b8;
+  --light-color: #FFFFFF;
+  --dark-color: #333333;
+  --gray-color: #F5F5F5;
+  --gray-light: #f8f9fa;
+  --gray-dark: #6c757d;
+  --text-color: #333333;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --border-radius: 12px;
+  --box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  --transition: all 0.3s ease;
+}
+
+/* Diet Plan Container */
+.diet-plan-container {
+  font-family: 'Inter', sans-serif;
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Profile Card Styling (Reused from profile.css) */
+.profile-card {
+  background-color: var(--light-color);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  border: none;
+  transition: var(--transition);
+}
+
+.profile-card:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.profile-card-header {
+  background-color: var(--primary-color);
+  color: var(--light-color);
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: none;
+  position: relative;
+}
+
+.profile-card-header h4 {
+  margin: 0;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+
+.profile-card-header i {
+  font-size: 1.25rem;
+}
+
+.profile-card-header .date-generated {
+  position: absolute;
+  right: 1.5rem;
+  font-size: 0.85rem;
+  opacity: 0.9;
+}
+
+.profile-card-body {
+  padding: 1.5rem;
+}
+
+/* Empty state styling */
+.empty-state {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  color: var(--gray-dark);
+  margin-bottom: 1.5rem;
+}
+
+.empty-state h4 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: var(--text-color);
+  font-size: 1.5rem;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  font-size: 1.1rem;
+}
+
+/* Alerts (Reused from profile.css) */
+.profile-alert {
+  padding: 1rem 1.25rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.profile-alert i {
+  font-size: 1.25rem;
+  margin-top: 0.125rem;
+}
+
+.profile-alert.info {
+  background-color: rgba(23, 162, 184, 0.1);
+  color: var(--info-color);
+  border-left: 4px solid var(--info-color);
+}
+
+.profile-alert.warning {
+  background-color: rgba(255, 193, 7, 0.1);
+  color: var(--warning-color);
+  border-left: 4px solid var(--warning-color);
+}
+
+.profile-alert.success {
+  background-color: rgba(40, 167, 69, 0.1);
+  color: var(--success-color);
+  border-left: 4px solid var(--success-color);
+}
+
+.profile-alert a {
+  color: var(--primary-color);
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.profile-alert a:hover {
+  text-decoration: underline;
+}
+
+/* Buttons (Reused from profile.css) */
+.profile-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  border-radius: 30px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: 'Nunito', sans-serif;
+  text-decoration: none;
+  gap: 0.5rem;
+}
+
+.profile-btn i {
+  font-size: 1rem;
+}
+
+.profile-btn.primary {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.profile-btn.primary:hover {
+  background-color: var(--primary-dark);
+  box-shadow: 0 4px 8px rgba(135, 181, 61, 0.3);
+}
+
+.profile-btn.outline {
+  background-color: transparent;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+}
+
+.profile-btn.outline:hover {
+  background-color: rgba(135, 181, 61, 0.1);
+}
+
+/* Calorie target card */
+.calorie-target {
+  background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+  color: white;
+  border-radius: var(--border-radius);
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 12px rgba(135, 181, 61, 0.3);
+  gap: 1.5rem;
+}
+
+.calorie-target i {
+  font-size: 2.5rem;
+}
+
+.calorie-target-content h5 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-size: 1.25rem;
+}
+
+.calorie-target-content p {
+  margin: 0;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+/* Diet plan content styling */
+.diet-plan-content {
+  font-family: 'Inter', sans-serif;
+  line-height: 1.7;
+  color: var(--text-color);
+}
+
+.diet-plan-content h1,
+.diet-plan-content h2,
+.diet-plan-content h3 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+}
+
+.diet-plan-content h1 {
+  font-size: 1.75rem;
+  color: var(--secondary-color);
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 0.5rem;
+}
+
+.diet-plan-content h2 {
+  font-size: 1.5rem;
+  color: var(--primary-color);
+}
+
+.diet-plan-content h3 {
+  font-size: 1.25rem;
+  color: var(--text-color);
+}
+
+.diet-plan-content p {
+  margin-bottom: 1.25rem;
+}
+
+.diet-plan-content ul,
+.diet-plan-content ol {
+  padding-left: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.diet-plan-content li {
+  margin-bottom: 0.5rem;
+}
+
+.diet-plan-content strong {
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+/* Diet plan content table styling */
+.diet-plan-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1.5rem;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.diet-plan-content th,
+.diet-plan-content td {
+  padding: 0.875rem 1rem;
+  border: 1px solid var(--border-color);
+}
+
+.diet-plan-content th {
+  background-color: rgba(135, 181, 61, 0.1);
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+.diet-plan-content tr:nth-child(even) td {
+  background-color: var(--gray-light);
+}
+
+.diet-plan-content tr:hover td {
+  background-color: rgba(135, 181, 61, 0.05);
+}
+
+/* Action buttons */
+.diet-plan-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+
+/* Modal styling */
+.profile-modal-header {
+  background-color: var(--primary-color);
+  color: white;
+  border-bottom: none;
+}
+
+.profile-modal-body {
+  padding: 1.5rem;
+}
+
+.profile-modal-footer {
+  border-top: none;
+  padding: 1rem 1.5rem 1.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .profile-card-header .date-generated {
+    position: static;
+    display: block;
+    margin-top: 0.5rem;
+    margin-left: 2.5rem;
+  }
+
+  .calorie-target {
+    padding: 1.25rem;
+  }
+
+  .diet-plan-actions {
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .diet-plan-actions .profile-btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Print styles */
+@media print {
+  .diet-plan-container {
+    max-width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .profile-card {
+    box-shadow: none;
+    border: none;
+  }
+
+  .profile-card-header {
+    background-color: white !important;
+    color: black !important;
+    padding: 1rem 0;
+  }
+
+  .profile-card-body {
+    padding: 0;
+  }
+
+  .diet-plan-actions,
+  .navbar,
+  .footer,
+  #regeneratePlanModal {
+    display: none !important;
+  }
+
+  .calorie-target {
+    background: white !important;
+    color: black !important;
+    box-shadow: none;
+    border: 1px solid #ddd;
+    padding: 1rem;
+  }
+
+  .diet-plan-content h1,
+  .diet-plan-content h2,
+  .diet-plan-content h3 {
+    color: black !important;
+  }
+
+  hr {
+    display: none;
+  }
+}

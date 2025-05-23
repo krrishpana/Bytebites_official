@@ -486,3 +486,17 @@ def generate_planner(request):
         planner_text = "✅ Your personalized diet plan:\n- Breakfast: Poha\n- Lunch: Dal Bhat\n- Dinner: Light Khichdi"
         return JsonResponse({'plan': planner_text})
     return JsonResponse({'error': 'Invalid request'}, status=400)
+
+
+def aboutus(request):
+    return render(request, 'nutrition/aboutus.html')
+
+def how_it_works(request):
+    return render(request, 'nutrition/how-it-works.html')
+
+def chatbot(request):
+    """
+    View for the chatbot interface using WebSockets
+    """
+    return render(request, 'nutrition/chatbot.html')
+

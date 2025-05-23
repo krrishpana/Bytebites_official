@@ -1,29 +1,33 @@
 {% extends "nutrition/base.html" %}
+{% load static %}
 
 {% block title %}Track Progress{% endblock %}
 
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/track_progress.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="row">
-    <div class="col-md-8">
-        <div class="card mb-4">
-            <div class="card-header">
-                <h3 class="mb-0">
-                    <i class="fas fa-chart-line me-2"></i>Your Progress
-                </h3>
+<div class="progress-container">
+    <div class="progress-layout" style="display: grid; grid-template-columns: 2fr 1fr; gap: 1.5rem;">
+        <div class="profile-card">
+            <div class="profile-card-header">
+                <i class="fas fa-chart-line"></i>
+                <h4>Your Progress</h4>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-6">
+            <div class="profile-card-body">
+                <div class="chart-container">
+                    <div class="chart-wrapper">
                         <canvas id="weightChart" height="250"></canvas>
                     </div>
-                    <div class="col-md-6">
+                    <div class="chart-wrapper">
                         <canvas id="calorieChart" height="250"></canvas>
                     </div>
                 </div>
-                
-                <div class="table-responsive mt-4">
-                    <table class="table table-hover">
-                        <thead class="table-light">
+
+                <div class="table-responsive">
+                    <table class="progress-table">
+                        <thead>
                             <tr>
                                 <th>Date</th>
                                 <th>Weight (kg)</th>
@@ -41,7 +45,7 @@
                             </tr>
                             {% empty %}
                             <tr>
-                                <td colspan="4" class="text-center">No progress records yet.</td>
+                                <td colspan="4" class="empty-message">No progress records yet.</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -49,43 +53,42 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                <h3 class="mb-0">
-                    <i class="fas fa-plus-circle me-2"></i>Add Progress
-                </h3>
+
+        <div class="profile-card">
+            <div class="profile-card-header">
+                <i class="fas fa-plus-circle"></i>
+                <h4>Add Progress</h4>
             </div>
-            <div class="card-body">
+            <div class="profile-card-body">
                 <form method="POST" action="{% url 'add_progress' %}">
                     {% csrf_token %}
-                    
-                    <div class="mb-3">
+
+                    <div class="form-group">
                         <label for="id_weight" class="form-label">Weight (kg)</label>
                         <input type="number" step="0.1" name="weight" id="id_weight" class="form-control" value="{{ profile.weight }}" required>
                     </div>
-                    
-                    <div class="mb-3">
+
+                    <div class="form-group">
                         <label for="id_calories_consumed" class="form-label">Calories Consumed Today</label>
                         <input type="number" name="calories_consumed" id="id_calories_consumed" class="form-control" placeholder="Optional">
                         <div class="form-text">Leave blank if you're not tracking calories today</div>
                     </div>
-                    
-                    <div class="mb-3">
+
+                    <div class="form-group">
                         <label for="id_notes" class="form-label">Notes</label>
                         <textarea name="notes" id="id_notes" class="form-control" rows="3" placeholder="How are you feeling? Any observations?"></textarea>
                     </div>
-                    
-                    <div class="d-grid">
-                        <button type="submit" class="btn btn-primary">Save Progress</button>
+
+                    <div class="form-group">
+                        <button type="submit" class="profile-btn primary">
+                            <i class="fas fa-save"></i> Save Progress
+                        </button>
                     </div>
                 </form>
-                
-                <div class="mt-4 p-3 bg-light rounded">
-                    <h5><i class="fas fa-lightbulb me-2"></i>Tips</h5>
-                    <ul class="small mb-0">
+
+                <div class="tips-box">
+                    <h5><i class="fas fa-lightbulb"></i> Tips</h5>
+                    <ul>
                         <li>Weigh yourself at the same time each day, preferably in the morning.</li>
                         <li>Don't get discouraged by daily fluctuations, focus on the trend.</li>
                         <li>Track your calories to maintain consistency with your nutrition plan.</li>
@@ -141,7 +144,7 @@
                         }
                     }
                 });
-                
+
                 // calorie chart
                 if (data.calories && data.calories.length > 0) {
                     const calorieCtx = document.getElementById('calorieChart').getContext('2d');
@@ -179,21 +182,21 @@
                         }
                     });
                 } else {
-                    document.getElementById('calorieChart').parentNode.innerHTML = 
-                        '<div class="text-center p-4 bg-light rounded">' +
-                        '<i class="fas fa-cookie-bite fa-3x mb-2 text-muted"></i>' +
+                    document.getElementById('calorieChart').parentNode.innerHTML =
+                        '<div class="no-data-message">' +
+                        '<i class="fas fa-cookie-bite"></i>' +
                         '<p>No calorie data recorded yet</p>' +
                         '</div>';
                 }
             })
             .catch(error => {
                 console.error('Error fetching progress data:', error);
-                
-                document.getElementById('weightChart').parentNode.innerHTML = 
-                    '<div class="alert alert-danger">Failed to load chart data.</div>';
-                
-                document.getElementById('calorieChart').parentNode.innerHTML = 
-                    '<div class="alert alert-danger">Failed to load chart data.</div>';
+
+                document.getElementById('weightChart').parentNode.innerHTML =
+                    '<div class="profile-alert warning"><i class="fas fa-exclamation-triangle"></i><div>Failed to load chart data.</div></div>';
+
+                document.getElementById('calorieChart').parentNode.innerHTML =
+                    '<div class="profile-alert warning"><i class="fas fa-exclamation-triangle"></i><div>Failed to load chart data.</div></div>';
             });
     });
 </script>

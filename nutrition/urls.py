@@ -18,4 +18,7 @@ urlpatterns = [
     path('api/progress_data/', views.progress_data, name='progress_data'),
     path('logout/', views.logout_user, name='logout'),
     path('generate-planner/', views.generate_planner, name='generate_planner'),
+        path('aboutus/', views.aboutus, name='aboutus'),
+    path('how-it-works/', views.how_it_works, name='how_it_works'),
+    path('chatbot/', views.chatbot, name='chatbot'),
 ]
