@@ -1,0 +1,90 @@
+<style>
+    .background{
+        position: absolute;
+        z-index: -20;
+    }
+  
+</style>
+
+
+{% extends "nutrition/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10">
+        <!-- <div class="background">
+            <img src="/static/image/background.jpg">
+            
+        </div> -->
+        <div class="jumbotron text-center py-5 mb-4 bg-light rounded-3">
+            <h1 class="display-4">Welcome to ByteBites</h1>
+            <p class="lead">Healthy life, one BITE at a time.</p>
+            <hr class="my-4">
+            <p>Get personalized diet plans, track your progress, and estimate food calories with AI</p>
+            {% if not user.is_authenticated %}
+            <div class="mt-4">
+                <a href="{% url 'register' %}" class="btn btn-primary btn-lg me-2">Get Started</a>
+                <a href="{% url 'login' %}" class="btn btn-outline-secondary btn-lg">Login</a>
+            </div>
+            {% else %}
+            <div class="mt-4">
+                <a href="{% url 'profile' %}" class="btn btn-primary btn-lg">Go to Profile</a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-calculator fa-3x mb-3" style="color: var(--primary-color);"></i>
+                <h3 class="card-title">BMI & BMR Calculator</h3>
+                <p class="card-text">Calculate your Body Mass Index and Basal Metabolic Rate to understand your body's needs.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-utensils fa-3x mb-3" style="color: var(--primary-color);"></i>
+                <h3 class="card-title">Personalized Diet Plans</h3>
+                <p class="card-text">Get AI-generated diet plans based on your body metrics, lifestyle, and goals.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-chart-line fa-3x mb-3" style="color: var(--primary-color);"></i>
+                <h3 class="card-title">Progress Tracking</h3>
+                <p class="card-text">Track your weight, calorie intake, and visualize your progress over time.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4">
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-camera fa-3x mb-3" style="color: var(--primary-color);"></i>
+                <h3 class="card-title">Food Calorie Estimation</h3>
+                <p class="card-text">Upload a photo of your food, describe the ingredients, and our AI will estimate its calorie content.</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="card h-100">
+            <div class="card-body text-center">
+                <i class="fas fa-brain fa-3x mb-3" style="color: var(--primary-color);"></i>
+                <h3 class="card-title">AI-Powered Insights</h3>
+                <p class="card-text">Leveraging Google's Gemini AI to provide intelligent nutrition recommendations tailored to your needs.</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

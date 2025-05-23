@@ -1,0 +1,201 @@
+{% extends "nutrition/base.html" %}
+
+{% block title %}Calorie Estimation{% endblock %}
+
+{% load markdown_extras %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-6">
+        <div class="card mb-4">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-camera me-2"></i>Food Calorie Estimation
+                </h3>
+            </div>
+            <div class="card-body">
+                <p class="mb-3">Upload a photo of your food and describe the ingredients to get an AI-powered calorie estimation.</p>
+                
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    <div class="mb-3">
+                        <label for="id_food_image" class="form-label">Food Photo</label>
+                        <input type="file" name="food_image" id="id_food_image" accept="image/*" class="form-control" required>
+                        <div class="form-text">Clear photos from above work best</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_description" class="form-label">Description</label>
+                        <textarea name="description" id="id_description" class="form-control" rows="3" placeholder="Describe the ingredients used in your meal">{{ form.description.value|default:'' }}</textarea>
+                        <div class="form-text">More detailed descriptions give better results</div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="id_portion" class="form-label">Portion Size</label>
+                        <input type="text" name="portion" id="id_portion" class="form-control" placeholder="e.g., 1 cup, 200g, 1 serving" value="{{ form.portion.value|default:'' }}">
+                    </div>
+                    
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-calculator me-2"></i>Estimate Calories
+                        </button>
+                    </div>
+                    
+                </form>
+                
+                <!-- new -->
+                <div id="loadingSpinner" class="text-center my-4" style="display: none;">
+                    <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem;">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                    <p class="mt-3">Analyzing your meal... Please wait.</p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-history me-2"></i>Recent Estimations
+                </h3>
+            </div>
+            <div class="card-body">
+                {% if recent_estimations %}
+                <div class="list-group">
+                    {% for estimation in recent_estimations %}
+                    <div class="list-group-item">
+                        <div class="d-flex w-100 justify-content-between">
+                            <h5 class="mb-1">
+                                {% if estimation.estimated_calories %}
+                                    {{ estimation.estimated_calories }} calories
+                                {% else %}
+                                    Calorie estimate unavailable
+                                {% endif %}
+                            </h5>
+                            <small>{{ estimation.date|date:"M d, Y" }}</small>
+                        </div>
+                        <p class="mb-1">{{ estimation.description|truncatechars:100 }}</p>
+                        {% if estimation.portion %}
+                            <small class="text-muted">Portion: {{ estimation.portion }}</small>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% else %}
+                <p class="text-center text-muted my-3">No estimation records yet.</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        {% if food_record and result %}
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h3 class="mb-0">
+                    <i class="fas fa-check-circle me-2"></i>Analysis Results
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="text-center mb-4">
+                    <img src="{{ food_record.food_image.url }}" class="img-fluid rounded" style="max-height: 300px;" alt="Food image">
+                </div>
+                
+                {% if food_record.estimated_calories %}
+                <div class="alert alert-success text-center">
+                    <h4 class="alert-heading">Estimated Calories</h4>
+                    <h2 class="display-4">{{ food_record.estimated_calories }}</h2>
+                </div>
+                {% endif %}
+                
+                <div class="nutrition-results mt-4">
+                    {{ result|convert_markdown|safe }}
+                </div>                
+                
+                <div class="alert alert-warning mt-3 small">
+                    <i class="fas fa-info-circle me-2"></i>This is an AI-powered estimation and may not be 100% accurate. Use as a general guide.
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <div class="card-body text-center py-5">
+                <i class="fas fa-utensils fa-5x mb-3 text-muted"></i>
+                <h4>Upload a food photo</h4>
+                <p class="text-muted">Your analysis results will appear here</p>
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="card mt-4">
+            <div class="card-header">
+                <h3 class="mb-0">
+                    <i class="fas fa-lightbulb me-2"></i>Tips for Better Results
+                </h3>
+            </div>
+            <div class="card-body">
+                <ul class="mb-0">
+                    <li>Take photos from directly above the food</li>
+                    <li>Ensure good lighting so all ingredients are visible</li>
+                    <li>List all ingredients in your description</li>
+                    <li>Mention cooking methods (fried, baked, steamed, etc.)</li>
+                    <li>Include specific portion sizes when possible</li>
+                    <li>For mixed dishes, describe the approximate ratio of ingredients</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .nutrition-results {
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+    
+    .nutrition-results h1, .nutrition-results h2, .nutrition-results h3 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        font-weight: 600;
+    }
+    
+    .nutrition-results h1 {
+        font-size: 1.5rem;
+        color: var(--dark-color);
+    }
+    
+    .nutrition-results h2 {
+        font-size: 1.3rem;
+        color: var(--primary-color);
+    }
+    
+    .nutrition-results h3 {
+        font-size: 1.15rem;
+    }
+    
+    .nutrition-results ul {
+        padding-left: 1.5rem;
+    }
+
+    .loading-blur {
+        opacity: 0.4;
+        pointer-events: none;
+    }
+    
+</style>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.querySelector('form');
+        const spinner = document.getElementById('loadingSpinner');
+
+        form.addEventListener('submit', function () {
+            spinner.style.display = 'block'; // Show the spinner
+        });
+    });
+</script>
+
+
+{% endblock %}
