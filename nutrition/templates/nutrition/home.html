@@ -1,4 +1,7 @@
 <style>
+  :root {
+    --primary-color: #87B53D;
+  }
   .background {
     position: absolute;
     z-index: -20;
@@ -6,6 +9,45 @@
 
   .hero-section {
     padding: 4rem 0;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+  }
+
+  /* Responsive hero layout */
+  .hero-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    min-height: 70vh;
+  }
+
+  /* Features section responsive styles */
+  .features-section {
+    background-color: #f8f9fa;
+  }
+
+  @media (max-width: 768px) {
+    .hero-wrapper {
+      flex-direction: column;
+      text-align: center;
+      gap: 3rem;
+    }
+
+    .hero-section {
+      padding: 2rem 0;
+      min-height: auto;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .hero-section {
+      padding: 1rem 0;
+    }
+
+    .features-section {
+      padding: 2rem 0;
+    }
   }
 
   .container {
@@ -22,35 +64,128 @@
 <link rel="stylesheet" href="{% static 'css/update-home.css' %}" />
 {% endblock %} {% block content %}
 
-<div class="hero-section">
-  <div class="hero-container">
-    <!-- Left Content Section -->
+<div class="hero-section" style="background-color: #f8f9fa;">
+  <div class="wrapper">
+    <div class="hero-wrapper">
+      <!-- Left Content Section -->
     <div class="hero-left">
       <div class="hero-content">
         <h1 class="hero-title">
-          Meet, Eat &<br>
-          Enjoy The <span class="title-accent">True<br>
-          Taste</span>
+          Healthy life<br>
+          One Bite at <span class="title-accent">a<span style="color: #333"></span> <br>
+          time</span>
         </h1>
         <p class="hero-description">
-          Discover the true essence of culinary delight as you<br>
-          meet, eat, and savor the authentic flavors that define<br>
-          our passion for food
+          Get custom meal plans, track calories and weight, <br>and use AI to calculate BMI, BMR, <br>and food intake.
+
         </p>
-        <button class="hero-btn">Get Started</button>
+       <a style="text-decoration: none; position: relative; display: inline-block;" href="{% url 'register' %}"> <button class="hero-btn">Register Now</button> </a>
       </div>
     </div>
+
+
+
+
 
     <!-- Right Image Section -->
     <div class="hero-right">
       <div class="hero-image-container">
         <img
-          src="{% static 'image/home-hero-new.png' %}"
+          src="{% static 'image/hero-image-new.png' %}"
           alt="Delicious Food Bowl"
           class="hero-food-image"
         />
       </div>
     </div>
+    </div>
   </div>
 </div>
+
+
+
+
+
+<section class="features-section">
+  <div class="wrapper">
+    <h1 class="features-title">Our Features</h1>
+
+    <div class="row g-4">
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card h-100 feature-card">
+          <div class="card-body text-center">
+            <i class="fas fa-calculator fa-3x mb-3" style="color: var(--primary-color);"></i>
+            <h3 class="card-title">BMI & BMR Calculator</h3>
+            <p class="card-text">Calculate your Body Mass Index and Basal Metabolic Rate to understand your body's needs.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card h-100 feature-card">
+          <div class="card-body text-center">
+            <i class="fas fa-utensils fa-3x mb-3" style="color: var(--primary-color);"></i>
+            <h3 class="card-title">Personalized Diet Plans</h3>
+            <p class="card-text">Get AI-generated diet plans based on your body metrics, lifestyle, and goals.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-sm-6 col-lg-4">
+        <div class="card h-100 feature-card">
+          <div class="card-body text-center">
+            <i class="fas fa-chart-line fa-3x mb-3" style="color: var(--primary-color);"></i>
+            <h3 class="card-title">Progress Tracking</h3>
+            <p class="card-text">Track your weight, calorie intake, and visualize your progress over time.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4 mt-2">
+      <div class="col-12 col-md-6">
+        <div class="card h-100 feature-card">
+          <div class="card-body text-center">
+            <i class="fas fa-camera fa-3x mb-3" style="color: var(--primary-color);"></i>
+            <h3 class="card-title">Food Calorie Estimation</h3>
+            <p class="card-text">Upload a photo of your food, describe the ingredients, and our AI will estimate its calorie content.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-12 col-md-6">
+        <div class="card h-100 feature-card">
+          <div class="card-body text-center">
+            <i class="fas fa-brain fa-3x mb-3" style="color: var(--primary-color);"></i>
+            <h3 class="card-title">AI-Powered Insights</h3>
+            <p class="card-text">Leveraging Google's Gemini AI to provide intelligent nutrition recommendations tailored to your needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

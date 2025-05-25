@@ -289,7 +289,7 @@ h3.section-sub-title strong {
             <i class="fas fa-bars"></i>
         </button>
 
-    <!-- Navbar -->
+        <!-- Navbar -->
         <nav class="navbar" id="main-navbar">
 
             <ul class="links-container">
@@ -328,12 +328,7 @@ h3.section-sub-title strong {
                     {% endif %}
                 <ul class="links-container">
                     {% if user.is_authenticated %}
-                    <li class="links">
-                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
-                            {% csrf_token %}
-                            <button type="submit" class="" >Logout</button>
-                        </form>
-                    </li>
+                  
                     {% else %}
                     <li class="links">
                         <a class="anchor" href="{% url 'how_it_works' %}">How it works</a>
@@ -343,19 +338,38 @@ h3.section-sub-title strong {
                         <a class="anchor" href="{% url 'aboutus' %}">About Us</a>
                     </li>
 
-                    <li class="links">
-                        <a class="anchor" href="{% url 'login' %}">Login</a>
-                    </li>
-                    <li class="links">
-                        <a class="anchor" href="{% url 'register' %}">Register</a>
-                    </li>
+                
                     {% endif %}
                 </ul>
 
         </nav>
 
+        <div class="profile-auth-contianer">
+            {% if user.is_authenticated %}
+            <ul class="links-container">
+             <li class="links">
+                        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="button-style" >Logout</button>
+                        </form>
+                    </li>
+                </ul>
+                {% else %}
+                <ul class="links-container">
+                <li class="links">
+                          <form method="post" action="{% url 'login' %}" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="button-style" >Login</button>
+                        </form>
+                    </li>
+                  
+                </ul>
+            </div>
+            {% endif %}
 
-</div>
+
+
+    </div>
 </header>
 
 

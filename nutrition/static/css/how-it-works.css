@@ -25,38 +25,15 @@
 /* Main Container */
 .how-it-works-container {
   font-family: 'Poppins', sans-serif;
-  padding: 4rem 0;
   background-color: var(--light-color);
   position: relative;
-  overflow: visible;
-  margin-top: 2rem;
-  margin-bottom: 4rem;
-  min-height: calc(100vh - 400px);
-}
+  overflow: hidden;
 
-.how-it-works-container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
-  height: 100%;
-  background-image:
-    radial-gradient(circle at 10% 20%, rgba(135, 181, 61, 0.05) 0%, transparent 30%),
-    radial-gradient(circle at 90% 80%, rgba(129, 79, 79, 0.05) 0%, transparent 30%);
-  z-index: 0;
 }
 
-.how-it-works-container .wrapper {
-  position: relative;
-  z-index: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
-  align-items: center;
-  padding: 2rem 0;
-  margin-bottom: 2rem;
-}
+
+
 
 /* Text Content Section */
 .how-it-works-text-container {
@@ -64,6 +41,7 @@
   flex-direction: column;
   gap: 2.5rem;
   max-width: 600px;
+  width: 100%;
 }
 
 .main-text-section {
@@ -191,10 +169,12 @@
 
 .how-it-works-img {
   max-width: 100%;
+  width: 100%;
   height: auto;
   border-radius: 20px;
   box-shadow: var(--box-shadow);
   transition: var(--transition);
+  object-fit: cover;
 }
 
 .how-it-works-img:hover {
@@ -204,9 +184,10 @@
 /* Floating Info Card */
 .on-img-info {
   position: absolute;
-  bottom: -60px;
+  bottom: -130px;
   left: 10%;
   width: 80%;
+  height: auto;
   background-color: var(--light-color);
   border-radius: var(--border-radius);
   padding: 2rem;
@@ -250,19 +231,18 @@
 
 /* Steps Section */
 .how-it-works-steps {
-  margin-top: 20rem;
-  padding: 3rem 0;
+
   background-color: var(--gray-light);
   border-radius: var(--border-radius);
   position: relative;
   z-index: 1;
   clear: both;
-  margin-bottom: 6rem;
+
 }
 
 .steps-header {
   text-align: center;
-  margin-bottom: 3rem;
+  /* margin-bottom: 3rem; */
 }
 
 .steps-header h2 {
@@ -335,9 +315,179 @@
   line-height: 1.6;
 }
 
-/* Responsive Design */
-@media (max-width: 992px) {
+/* Comprehensive Responsive Design for All 6 Breakpoints */
+
+/* 2xl breakpoint (1536px+) - Enhanced for large screens */
+@media (min-width: 1536px) {
   .how-it-works-container {
+    padding: 6rem 0;
+  }
+
+  .how-it-works-container .wrapper {
+    gap: 4rem;
+    padding: 3rem 0;
+  }
+
+  .main-text-section h1 {
+    font-size: 3.5rem;
+  }
+
+  .main-text-section pre {
+    font-size: 1.2rem;
+  }
+
+  .plans-text-container h4 {
+    font-size: 1.4rem;
+  }
+
+  .plans-text-container p {
+    font-size: 1.1rem;
+  }
+
+  .how-it-works-btn {
+    padding: 1rem 2.5rem;
+    font-size: 1.1rem;
+  }
+
+  .on-img-info {
+    padding: 2.5rem;
+  }
+
+  .on-img-info h2 {
+    font-size: 2rem;
+  }
+
+  .on-img-info p {
+    font-size: 1.1rem;
+  }
+
+  .steps-header h2 {
+    font-size: 3rem;
+  }
+
+  .steps-header p {
+    font-size: 1.2rem;
+  }
+
+  .step-card {
+    padding: 2.5rem;
+  }
+
+  .step-icon {
+    font-size: 3rem;
+  }
+
+  .step-title {
+    font-size: 1.4rem;
+  }
+
+  .step-description {
+    font-size: 1rem;
+  }
+}
+
+/* xl breakpoint (1280px - 1535px) */
+@media (max-width: 1535px) and (min-width: 1280px) {
+  
+
+  .how-it-works-container .wrapper {
+    gap: 3.5rem;
+    padding: 2.5rem 0;
+  }
+
+  .main-text-section h1 {
+    font-size: 3.2rem;
+  }
+
+  .main-text-section pre {
+    font-size: 1.15rem;
+  }
+
+  .plans-text-container h4 {
+    font-size: 1.35rem;
+  }
+
+  .how-it-works-btn {
+    padding: 0.9rem 2.2rem;
+    font-size: 1.05rem;
+  }
+
+  .on-img-info h2 {
+    font-size: 1.9rem;
+  }
+
+  .steps-header h2 {
+    font-size: 2.8rem;
+  }
+
+  .steps-header p {
+    font-size: 1.15rem;
+  }
+
+  .step-icon {
+    font-size: 2.8rem;
+  }
+
+  .step-title {
+    font-size: 1.35rem;
+  }
+}
+
+/* lg breakpoint (1024px - 1279px) */
+@media (max-width: 1279px) and (min-width: 1024px) {
+
+  .how-it-works-container .wrapper {
+    gap: 3rem;
+    padding: 2rem 0;
+  }
+
+  .main-text-section h1 {
+    font-size: 2.8rem;
+  }
+
+  .main-text-section pre {
+    font-size: 1.1rem;
+  }
+
+  .plans-text-container h4 {
+    font-size: 1.25rem;
+  }
+
+  .how-it-works-btn {
+    padding: 0.85rem 2rem;
+    font-size: 1rem;
+  }
+
+  .on-img-info {
+    padding: 2rem;
+  }
+
+  .on-img-info h2 {
+    font-size: 1.7rem;
+  }
+
+  .steps-header h2 {
+    font-size: 2.5rem;
+  }
+
+  .step-icon {
+    font-size: 2.5rem;
+  }
+
+  .step-title {
+    font-size: 1.25rem;
+  }
+
+  .steps-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+/* md breakpoint (768px - 1023px) */
+@media (max-width: 1023px) and (min-width: 768px) {
+  .how-it-works-container {
+    /* padding: 3rem 0; */
     min-height: auto;
     margin-bottom: 6rem;
   }
@@ -345,18 +495,30 @@
   .how-it-works-container .wrapper {
     grid-template-columns: 1fr;
     gap: 4rem;
+    padding: 1.5rem 0;
   }
 
   .how-it-works-text-container {
     max-width: 100%;
+    text-align: center;
   }
 
   .main-text-section h1 {
     font-size: 2.5rem;
   }
 
+  .main-text-section pre {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .plans-text-container {
+    text-align: center;
+  }
+
   .how-it-works-img-container {
     margin-bottom: 80px;
+    order: -1;
   }
 
   .on-img-info {
@@ -367,40 +529,292 @@
     margin-top: 2rem;
   }
 
+  .on-img-info h2 {
+    font-size: 1.6rem;
+  }
+
+  .steps-header h2 {
+    font-size: 2.2rem;
+  }
+
+  .steps-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
   .how-it-works-steps {
     margin-top: 6rem;
     margin-bottom: 8rem;
   }
 }
 
-@media (max-width: 768px) {
+/* sm breakpoint (640px - 767px) */
+@media (max-width: 767px) and (min-width: 640px) {
+  .how-it-works-container {
+    /* padding: 2.5rem 0; */
+    margin-bottom: 5rem;
+  }
+
+  .how-it-works-container .wrapper {
+    gap: 3rem;
+    padding: 1rem 0;
+  }
+
   .main-text-section h1 {
-    font-size: 2rem;
+    font-size: 2.2rem;
   }
 
   .main-text-section pre {
-    font-size: 1rem;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .plan-section {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .section-plans {
+    padding: 1.2rem;
+  }
+
+  .plans-text-container h4 {
+    font-size: 1.2rem;
+  }
+
+  .plans-text-container p {
+    font-size: 0.95rem;
+  }
+
+  .how-it-works-btn {
+    padding: 0.8rem 1.8rem;
+    font-size: 0.95rem;
+  }
+
+  .on-img-info {
+    padding: 1.5rem;
+  }
+
+  .on-img-info h2 {
+    font-size: 1.5rem;
+  }
+
+  .on-img-info p {
+    font-size: 0.95rem;
   }
 
   .steps-header h2 {
     font-size: 2rem;
   }
-}
 
-@media (max-width: 576px) {
-  .how-it-works-container {
-    margin-bottom: 8rem;
-  }
-
-  .plan-section {
-    grid-template-columns: 1fr;
+  .steps-header p {
+    font-size: 1rem;
   }
 
   .steps-container {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .step-card {
+    padding: 1.5rem;
+  }
+
+  .step-icon {
+    font-size: 2.2rem;
+  }
+
+  .step-title {
+    font-size: 1.2rem;
+  }
+
+  .step-description {
+    font-size: 0.9rem;
+  }
+}
+
+/* xs breakpoint (475px - 639px) */
+@media (max-width: 639px) and (min-width: 475px) {
+  .how-it-works-container {
+    /* padding: 2rem 0; */
+    margin-bottom: 4rem;
+  }
+
+  .how-it-works-container .wrapper {
+    gap: 2.5rem;
+    padding: 0.5rem 0;
+  }
+
+  .main-text-section h1 {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .main-text-section h1::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .main-text-section pre {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-align: center;
+  }
+
+  .section-plans {
+    padding: 1rem;
+  }
+
+  .plans-text-container h4 {
+    font-size: 1.1rem;
+  }
+
+  .plans-text-container p {
+    font-size: 0.9rem;
+  }
+
+  .how-it-works-btn {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.9rem;
+  }
+
+  .on-img-info {
+    padding: 1.2rem;
+  }
+
+  .on-img-info h2 {
+    font-size: 1.3rem;
+  }
+
+  .on-img-info p {
+    font-size: 0.9rem;
+  }
+
+  .steps-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .steps-header p {
+    font-size: 0.95rem;
+  }
+
+  .step-card {
+    padding: 1.2rem;
+  }
+
+  .step-number {
+    width: 35px;
+    height: 35px;
+    font-size: 1.1rem;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+  }
+
+  .step-title {
+    font-size: 1.1rem;
+  }
+
+  .step-description {
+    font-size: 0.85rem;
+  }
+}
+
+/* xxs breakpoint (below 475px) */
+@media (max-width: 474px) {
+  .how-it-works-container {
+    /* padding: 1.5rem 0; */
+    margin-bottom: 3rem;
+  }
+
+  .how-it-works-container .wrapper {
+    gap: 2rem;
+    padding: 0;
+  }
+
+  .main-text-section h1 {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .main-text-section h1::after {
+    width: 60px;
+    height: 3px;
+  }
+
+  .main-text-section pre {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+
+  .section-plans {
+    padding: 0.8rem;
+  }
+
+  .plans-text-container h4 {
+    font-size: 1rem;
+  }
+
+  .plans-text-container p {
+    font-size: 0.85rem;
+  }
+
+  .how-it-works-btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.85rem;
+  }
+
+  .on-img-info {
+    padding: 1rem;
+  }
+
+  .on-img-info h2 {
+    font-size: 1.2rem;
+  }
+
+  .on-img-info p {
+    font-size: 0.85rem;
   }
 
   .how-it-works-steps {
-    margin-bottom: 10rem;
+    margin-top: 4rem;
+    margin-bottom: 6rem;
+    padding: 2rem 0;
+  }
+
+  .steps-header h2 {
+    font-size: 1.6rem;
+  }
+
+  .steps-header p {
+    font-size: 0.9rem;
+  }
+
+  .step-card {
+    padding: 1rem;
+  }
+
+  .step-number {
+    width: 30px;
+    height: 30px;
+    font-size: 1rem;
+    top: -15px;
+  }
+
+  .step-icon {
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-title {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .step-description {
+    font-size: 0.8rem;
+    line-height: 1.4;
   }
 }
