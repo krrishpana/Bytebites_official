@@ -297,12 +297,8 @@ h3.section-sub-title strong {
                         <a class="anchor" href="{% url 'home' %}">Home</a>
                     </li>
                     {% if user.is_authenticated %}
-                    <li class="links">
-                        <a class="anchor" href="{% url 'aboutus' %}">About Us</a>
-                    </li>
-                    <li class="links">
-                        <a class="anchor" href="{% url 'how_it_works' %}">How it works</a>
-                    </li>
+               
+                  
 
                     <li class="links">
                         <a class="anchor" href="{% url 'profile' %}">Profile</a>
@@ -318,7 +314,7 @@ h3.section-sub-title strong {
                     </li>
                     <li class="links">
                         <a class="anchor" href="{% url 'chatbot' %}">
-                            <i class="fas fa-robot"></i>
+                            Chatbot
                         </a>
                     </li>
                     {% comment %} <li class="links">
@@ -335,10 +331,18 @@ h3.section-sub-title strong {
                     <li class="links">
                         <form method="post" action="{% url 'logout' %}" style="display: inline;">
                             {% csrf_token %}
-                            <button type="submit" class="anchor" >Logout</button>
+                            <button type="submit" class="" >Logout</button>
                         </form>
                     </li>
                     {% else %}
+                    <li class="links">
+                        <a class="anchor" href="{% url 'how_it_works' %}">How it works</a>
+                    </li>
+
+                    <li class="links">
+                        <a class="anchor" href="{% url 'aboutus' %}">About Us</a>
+                    </li>
+
                     <li class="links">
                         <a class="anchor" href="{% url 'login' %}">Login</a>
                     </li>

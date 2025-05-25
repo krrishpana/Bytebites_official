@@ -19,50 +19,36 @@
 </style>
 
 {% extends "nutrition/base.html" %} {% load static %} {% block title %}Home{% endblock %} {% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/testimonials.css' %}" />
-<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+<link rel="stylesheet" href="{% static 'css/foodman-home.css' %}" />
 {% endblock %} {% block content %}
 
 <div class="hero-section">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-md-6">
-        <div class="hero-content">
-          <h1 class="display-4">
-            <span>We Provide </span>
-            <span style="color: #8bc34a">The Best</span>
-          </h1>
-          <h1 class="display-4">
-            <span style="color: #8bc34a">Healthy</span>
-            <span> Food For You</span>
-          </h1>
-          <p class="lead mt-4">
-            Our job is to filling your tummy with delicious food and with fast
-            and free delivery
-          </p>
-          <div class="mt-5">
-            <a
-              href="#"
-              class="btn btn-success btn-lg px-4 py-2"
-              style="
-                background-color: #8bc34a;
-                border: none;
-                border-radius: 25px;
-              "
-              >Order Now</a
-            >
-          </div>
-        </div>
+  <div class="hero-container">
+    <!-- Left Content Section -->
+    <div class="hero-left">
+      <div class="hero-content">
+        <h1 class="hero-title">
+          Meet, Eat &<br>
+          Enjoy The <span class="title-accent">True<br>
+          Taste</span>
+        </h1>
+        <p class="hero-description">
+          Discover the true essence of culinary delight as you<br>
+          meet, eat, and savor the authentic flavors that define<br>
+          our passion for food
+        </p>
+        <button class="hero-btn">Get Started</button>
       </div>
-      <div class="col-md-6">
-        <div class="hero-image">
-          <img
-            src="{% static 'image/hero-section-img.png' %}"
-            alt="Healthy Food Bowl"
-            class="img-fluid"
-            style="border-radius: 50%"
-          />
-        </div>
+    </div>
+
+    <!-- Right Image Section -->
+    <div class="hero-right">
+      <div class="hero-image-container">
+        <img
+          src="{% static 'image/hero-section-img.png' %}"
+          alt="Delicious Food Bowl"
+          class="hero-food-image"
+        />
       </div>
     </div>
   </div>
