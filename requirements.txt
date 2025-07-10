@@ -35,3 +35,5 @@ uvicorn
 markdown
 dnspython
 email-validator
+whitenoise
+gunicorn
