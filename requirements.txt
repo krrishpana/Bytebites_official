@@ -34,3 +34,4 @@ urllib3==2.4.0
 uvicorn
 markdown
 dnspython
+email-validator
