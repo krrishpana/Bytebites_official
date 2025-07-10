@@ -9,7 +9,10 @@ class UserProfile(models.Model):
     age = models.IntegerField(null=True, blank=True)
     gender = models.CharField(max_length=1, choices=[('M', 'Male'), ('F', 'Female')], null=True, blank=True)
     diet_preference = models.CharField(max_length=10, choices=[('veg', 'Vegetarian'), ('non-veg', 'Non-Vegetarian')], null=True, blank=True)
-    allergies = models.TextField(null=True, blank=True)
+    allergies = models.TextField(blank=True, null=True)
+    diseases = models.TextField(blank=True, null=True)
+    medications = models.TextField(blank=True, null=True)
+    dietary_restrictions = models.TextField(blank=True, null=True)
     lifestyle = models.CharField(
         max_length=20, 
         choices=[

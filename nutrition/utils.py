@@ -43,3 +43,17 @@ def calculate_health_metrics(weight, height, age, gender):
     bmr = round(bmr, 2)
     
     return bmi, bmr
+
+def calculate_tdee(bmr, activity_level):
+    activity_multipliers = {
+        'sedentary': 1.2,
+        'light': 1.375,
+        'moderate': 1.55,
+        'active': 1.725,
+        'very_active': 1.9
+    }
+    multiplier = activity_multipliers.get(activity_level.lower())
+    if multiplier:
+        return round(bmr * multiplier, 2)
+    return None
+

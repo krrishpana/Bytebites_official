@@ -207,21 +207,37 @@
         width: 100%;
         height: 40%;
         padding: 1rem;
+        position: relative;
+        right: auto;
+        top: auto;
+        border-radius: 0;
+        background: transparent;
     }
 
     .hero-title {
         font-size: 2.5rem;
         text-align: center;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+        text-align: center;
+        margin-bottom: 2rem;
+        line-height: 1.5;
     }
 
     .hero-stats {
         justify-content: center;
         gap: 1rem;
+        margin-bottom: 2rem;
     }
 
     .image-circle {
         width: 200px;
         height: 200px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     }
 
     .hero-food-image {
@@ -232,5 +248,273 @@
     .hero-content {
         text-align: center;
         max-width: 100%;
+    }
+
+    .hero-btn {
+        margin: 0 auto;
+        display: block;
+        width: fit-content;
+        padding: 0.8rem 2rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Enhanced Mobile Responsiveness */
+@media (max-width: 600px) {
+    .hero-section {
+        height: auto;
+        min-height: 100vh;
+        padding: 1rem 0;
+    }
+
+    .hero-container {
+        flex-direction: column;
+        padding: 0 1rem;
+        gap: 2rem;
+    }
+
+    .hero-left {
+        width: 100%;
+        height: auto;
+        clip-path: none;
+        padding: 1.5rem;
+        background: linear-gradient(135deg, #8BC34A 0%, #7CB342 100%);
+        border-radius: 20px;
+        margin-bottom: 1rem;
+    }
+
+    .hero-right {
+        width: 100%;
+        height: auto;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .hero-content {
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .welcome-text {
+        font-size: 0.8rem;
+        margin-bottom: 0.8rem;
+        letter-spacing: 1px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        opacity: 0.95;
+    }
+
+    .hero-stats {
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+        flex-wrap: wrap;
+    }
+
+    .stat-item {
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+    }
+
+    .stat-number {
+        font-size: 1rem;
+        padding: 0.2rem 0.5rem;
+        min-width: 2rem;
+    }
+
+    .stat-label {
+        font-size: 0.8rem;
+    }
+
+    .hero-btn {
+        padding: 0.8rem 1.8rem;
+        font-size: 0.9rem;
+        border-radius: 25px;
+        margin: 0 auto;
+        display: block;
+        width: fit-content;
+        min-height: 48px;
+    }
+
+    .hero-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+    }
+
+    .image-circle {
+        width: 280px;
+        height: 280px;
+        max-width: 85vw;
+        max-height: 85vw;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .hero-food-image {
+        width: 220px;
+        height: 220px;
+        max-width: 70vw;
+        max-height: 70vw;
+    }
+
+    .delivery-icon {
+        font-size: 1.5rem;
+        margin-bottom: 0.8rem;
+    }
+}
+
+/* Ultra Small Mobile Screens */
+@media (max-width: 400px) {
+    .hero-section {
+        padding: 0.5rem 0;
+    }
+
+    .hero-container {
+        padding: 0 0.8rem;
+        gap: 1.5rem;
+    }
+
+    .hero-left {
+        padding: 1.2rem;
+        border-radius: 15px;
+    }
+
+    .hero-title {
+        font-size: 1.7rem;
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero-stats {
+        gap: 0.8rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .stat-number {
+        font-size: 0.9rem;
+        padding: 0.2rem 0.4rem;
+        min-width: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.75rem;
+    }
+
+    .hero-btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.85rem;
+        min-height: 44px;
+    }
+
+    .image-circle {
+        width: 240px;
+        height: 240px;
+        max-width: 90vw;
+        max-height: 90vw;
+    }
+
+    .hero-food-image {
+        width: 190px;
+        height: 190px;
+        max-width: 75vw;
+        max-height: 75vw;
+    }
+
+    .welcome-text {
+        font-size: 0.75rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .delivery-icon {
+        font-size: 1.3rem;
+        margin-bottom: 0.6rem;
+    }
+}
+
+/* Landscape Mobile Orientation */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+    .hero-section {
+        height: auto;
+        min-height: auto;
+        padding: 1rem 0;
+    }
+
+    .hero-container {
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        padding: 0 2rem;
+    }
+
+    .hero-left {
+        width: 50%;
+        height: auto;
+        clip-path: none;
+        padding: 1.5rem;
+        border-radius: 15px;
+    }
+
+    .hero-right {
+        width: 50%;
+        height: auto;
+        padding: 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+        text-align: left;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+        text-align: left;
+    }
+
+    .hero-stats {
+        justify-content: flex-start;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .hero-btn {
+        margin: 0;
+        display: inline-block;
+    }
+
+    .hero-content {
+        text-align: left;
+    }
+
+    .image-circle {
+        width: 200px;
+        height: 200px;
+    }
+
+    .hero-food-image {
+        width: 160px;
+        height: 160px;
     }
 }

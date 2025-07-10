@@ -1,0 +1,88 @@
+{% extends "nutrition/base.html" %}
+{% load static %}
+
+{% block title %}Disease Management{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-layout">
+        <!-- Left Column - User Profile -->
+        <div class="profile-sidebar">
+            <div class="profile-card">
+                <div class="profile-card-header">
+                    <i class="fas fa-user"></i>
+                    <h4>Profile</h4>
+                </div>
+                <div class="profile-card-body">
+                    <div class="user-profile">
+                        <div class="user-avatar">
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <h3 class="user-name">{{ user.username }}</h3>
+                        <p class="user-email">{{ user.email }}</p>
+                    </div>
+
+                    <div class="profile-nav">
+                        <a href="{% url 'user_data' %}" class="profile-nav-item">
+                            <i class="fas fa-pencil-alt"></i> Edit Basic Information
+                        </a>
+                        <a href="{% url 'lifestyle' %}" class="profile-nav-item">
+                            <i class="fas fa-running"></i> Update Lifestyle
+                        </a>
+                        <a href="{% url 'goals' %}" class="profile-nav-item">
+                            <i class="fas fa-bullseye"></i> Set Nutrition Goals
+                        </a>
+                        <a href="{% url 'disease' %}" class="profile-nav-item active">
+                            <i class="fas fa-notes-medical"></i> Medical Conditions 
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column - Disease Management -->
+        <div class="profile-main">
+            <div class="profile-card">
+                <div class="profile-card-header">
+                    <i class="fas fa-notes-medical"></i>
+                    <h4>Disease Management</h4>
+                </div>
+                <div class="profile-card-body">
+                    <div class="profile-alert info">
+                        <i class="fas fa-info-circle"></i>
+                        <div>This section is optional. Please provide information about any medical conditions or diseases that may affect your nutrition requirements.</div>
+                    </div>
+
+                    <form method="post" class="mt-4">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="diseases">Medical Conditions</label>
+                            <textarea class="form-control" id="diseases" name="diseases" rows="4" placeholder="List any medical conditions or diseases  (optional)">{{ user_profile.diseases|default:'' }}</textarea>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="medications">Current Medications</label>
+                            <textarea class="form-control" id="medications" name="medications" rows="4" placeholder="List any medications you are currently taking (optional)">{{ user_profile.medications|default:'' }}</textarea>
+                        </div>
+
+                        <div class="form-group mt-3">
+                            <label for="dietary_restrictions">Dietary Restrictions</label>
+                            <textarea class="form-control" id="dietary_restrictions" name="dietary_restrictions" rows="4" placeholder="List any dietary restrictions related to your medical conditions (optional)">{{ user_profile.dietary_restrictions|default:'' }}</textarea>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="profile-btn primary">
+                                <i class="fas fa-save"></i><a href="{% url 'profile' %}"> Save Information</a>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

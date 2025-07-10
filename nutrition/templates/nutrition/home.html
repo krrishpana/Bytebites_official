@@ -79,7 +79,11 @@
           Get custom meal plans, track calories and weight, <br>and use AI to calculate BMI, BMR, <br>and food intake.
 
         </p>
+       {% if user.is_authenticated %}
+       <a style="text-decoration: none; position: relative; display: inline-block;" href="{% url 'aboutus' %}"> <button class="hero-btn">About Us</button> </a>
+       {% else %}
        <a style="text-decoration: none; position: relative; display: inline-block;" href="{% url 'register' %}"> <button class="hero-btn">Register Now</button> </a>
+       {% endif %}
       </div>
     </div>
 

@@ -1,0 +1,146 @@
+{% extends "nutrition/base.html" %}
+{% load static %}
+
+{% block title %}Book Appointment{% endblock %}
+
+{% block extra_head %}
+<link rel="stylesheet" href="{% static 'css/diet_plan.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="diet-plan-container">
+    <div class="profile-card">
+        <div class="profile-card-header">
+            <i class="fas fa-user-md"></i>
+            <h4>Book a Professional Consultation</h4>
+        </div>
+        <div class="profile-card-body">
+            <div class="appointment-content">
+                <div class="appointment-info">
+                    <h5>Why Consult a Nutrition Professional?</h5>
+                    <ul class="benefits-list">
+                        <li><i class="fas fa-check-circle"></i> Personalized nutrition advice tailored to your specific needs</li>
+                        <li><i class="fas fa-check-circle"></i> Expert guidance on managing health conditions through diet</li>
+                        <li><i class="fas fa-check-circle"></i> Professional support for achieving your health goals</li>
+                        <li><i class="fas fa-check-circle"></i> Detailed analysis of your current diet and lifestyle</li>
+                    </ul>
+                </div>
+
+                <form method="POST" class="appointment-form">
+                    {% csrf_token %}
+                    
+                    <div class="form-group">
+                        <label for="id_name">Full Name</label>
+                        <input type="text" name="name" id="id_name" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_email">Email Address</label>
+                        <input type="email" name="email" id="id_email" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_phone">Phone Number</label>
+                        <input type="tel" name="phone" id="id_phone" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_date">Preferred Date</label>
+                        <input type="date" name="date" id="id_date" class="form-control" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_time">Preferred Time</label>
+                        <select name="time" id="id_time" class="form-control" required>
+                            <option value="">Select a time slot</option>
+                            <option value="09:00">09:00 AM</option>
+                            <option value="10:00">10:00 AM</option>
+                            <option value="11:00">11:00 AM</option>
+                            <option value="14:00">02:00 PM</option>
+                            <option value="15:00">03:00 PM</option>
+                            <option value="16:00">04:00 PM</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="id_concerns">Health Concerns or Goals</label>
+                        <textarea name="concerns" id="id_concerns" class="form-control" rows="4" placeholder="Please describe your health concerns or goals for the consultation"></textarea>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="profile-btn primary">
+                            <i class="fas fa-calendar-check"></i> Book Appointment
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.appointment-content {
+    padding: 20px;
+}
+
+.appointment-info {
+    margin-bottom: 30px;
+}
+
+.benefits-list {
+    list-style: none;
+    padding: 0;
+    margin: 20px 0;
+}
+
+.benefits-list li {
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.benefits-list i {
+    color: #198754;
+}
+
+.appointment-form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    transition: border-color 0.15s ease-in-out;
+}
+
+.form-control:focus {
+    border-color: #198754;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(25, 135, 84, 0.25);
+}
+
+.form-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.profile-btn.primary {
+    padding: 12px 24px;
+    font-size: 16px;
+}
+</style>
+{% endblock %} 

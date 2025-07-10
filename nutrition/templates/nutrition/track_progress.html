@@ -107,7 +107,7 @@
         fetch('{% url "progress_data" %}')
             .then(response => response.json())
             .then(data => {
-                // Create weight chart
+                // Create weight chart with responsive options
                 const weightCtx = document.getElementById('weightChart').getContext('2d');
                 const weightChart = new Chart(weightCtx, {
                     type: 'line',
@@ -118,34 +118,71 @@
                             data: data.weights,
                             borderColor: '#4CAF50',
                             backgroundColor: 'rgba(76, 175, 80, 0.1)',
-                            borderWidth: 2,
+                            borderWidth: window.innerWidth <= 600 ? 1.5 : 2,
                             tension: 0.2,
-                            fill: true
+                            fill: true,
+                            pointRadius: window.innerWidth <= 600 ? 3 : 4,
+                            pointHoverRadius: window.innerWidth <= 600 ? 5 : 6
                         }]
                     },
                     options: {
                         responsive: true,
+                        maintainAspectRatio: false,
                         plugins: {
                             title: {
                                 display: true,
                                 text: 'Weight Progression',
                                 font: {
-                                    size: 16
-                                }
+                                    size: window.innerWidth <= 600 ? 12 : window.innerWidth <= 768 ? 14 : 16
+                                },
+                                padding: window.innerWidth <= 600 ? 10 : 20
                             },
                             legend: {
                                 display: false
+                            },
+                            tooltip: {
+                                titleFont: {
+                                    size: window.innerWidth <= 600 ? 11 : 12
+                                },
+                                bodyFont: {
+                                    size: window.innerWidth <= 600 ? 10 : 11
+                                },
+                                padding: window.innerWidth <= 600 ? 6 : 8
                             }
                         },
                         scales: {
+                            x: {
+                                ticks: {
+                                    font: {
+                                        size: window.innerWidth <= 600 ? 9 : window.innerWidth <= 768 ? 10 : 11
+                                    },
+                                    maxTicksLimit: window.innerWidth <= 600 ? 5 : window.innerWidth <= 768 ? 7 : 10
+                                },
+                                grid: {
+                                    display: window.innerWidth > 600
+                                }
+                            },
                             y: {
-                                beginAtZero: false
+                                beginAtZero: false,
+                                ticks: {
+                                    font: {
+                                        size: window.innerWidth <= 600 ? 9 : window.innerWidth <= 768 ? 10 : 11
+                                    }
+                                },
+                                grid: {
+                                    display: window.innerWidth > 600
+                                }
+                            }
+                        },
+                        elements: {
+                            point: {
+                                hoverBorderWidth: window.innerWidth <= 600 ? 2 : 3
                             }
                         }
                     }
                 });
 
-                // calorie chart
+                // calorie chart with responsive options
                 if (data.calories && data.calories.length > 0) {
                     const calorieCtx = document.getElementById('calorieChart').getContext('2d');
                     const calorieChart = new Chart(calorieCtx, {
@@ -157,26 +194,63 @@
                                 data: data.calories,
                                 backgroundColor: 'rgba(255, 152, 0, 0.7)',
                                 borderColor: '#FF9800',
-                                borderWidth: 1
+                                borderWidth: window.innerWidth <= 600 ? 1 : 1.5,
+                                borderRadius: window.innerWidth <= 600 ? 2 : 4,
+                                borderSkipped: false
                             }]
                         },
                         options: {
                             responsive: true,
+                            maintainAspectRatio: false,
                             plugins: {
                                 title: {
                                     display: true,
                                     text: 'Calorie Intake',
                                     font: {
-                                        size: 16
-                                    }
+                                        size: window.innerWidth <= 600 ? 12 : window.innerWidth <= 768 ? 14 : 16
+                                    },
+                                    padding: window.innerWidth <= 600 ? 10 : 20
                                 },
                                 legend: {
                                     display: false
+                                },
+                                tooltip: {
+                                    titleFont: {
+                                        size: window.innerWidth <= 600 ? 11 : 12
+                                    },
+                                    bodyFont: {
+                                        size: window.innerWidth <= 600 ? 10 : 11
+                                    },
+                                    padding: window.innerWidth <= 600 ? 6 : 8
                                 }
                             },
                             scales: {
+                                x: {
+                                    ticks: {
+                                        font: {
+                                            size: window.innerWidth <= 600 ? 9 : window.innerWidth <= 768 ? 10 : 11
+                                        },
+                                        maxTicksLimit: window.innerWidth <= 600 ? 5 : window.innerWidth <= 768 ? 7 : 10
+                                    },
+                                    grid: {
+                                        display: window.innerWidth > 600
+                                    }
+                                },
                                 y: {
-                                    beginAtZero: true
+                                    beginAtZero: true,
+                                    ticks: {
+                                        font: {
+                                            size: window.innerWidth <= 600 ? 9 : window.innerWidth <= 768 ? 10 : 11
+                                        }
+                                    },
+                                    grid: {
+                                        display: window.innerWidth > 600
+                                    }
+                                }
+                            },
+                            elements: {
+                                bar: {
+                                    borderWidth: window.innerWidth <= 600 ? 1 : 2
                                 }
                             }
                         }
@@ -193,11 +267,150 @@
                 console.error('Error fetching progress data:', error);
 
                 document.getElementById('weightChart').parentNode.innerHTML =
-                    '<div class="profile-alert warning"><i class="fas fa-exclamation-triangle"></i><div>Failed to load chart data.</div></div>';
+                    '<div class="no-data-message"><i class="fas fa-exclamation-triangle"></i><p>Failed to load weight chart data</p></div>';
 
                 document.getElementById('calorieChart').parentNode.innerHTML =
-                    '<div class="profile-alert warning"><i class="fas fa-exclamation-triangle"></i><div>Failed to load chart data.</div></div>';
+                    '<div class="no-data-message"><i class="fas fa-exclamation-triangle"></i><p>Failed to load calorie chart data</p></div>';
             });
+
+        // Add responsive chart resize functionality
+        let resizeTimer;
+        window.addEventListener('resize', function() {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(function() {
+                // Trigger chart resize for all Chart.js instances
+                Chart.helpers.each(Chart.instances, function(instance) {
+                    instance.resize();
+                });
+            }, 250);
+        });
+
+        // Mobile-specific enhancements
+        if (window.innerWidth <= 768) {
+            // Add touch-friendly interactions
+            const formControls = document.querySelectorAll('.form-control');
+            formControls.forEach(control => {
+                control.addEventListener('focus', function() {
+                    this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+            });
+
+            // Improve table scrolling on mobile
+            const tableContainer = document.querySelector('.table-responsive');
+            if (tableContainer) {
+                const table = tableContainer.querySelector('.progress-table');
+                if (table && table.scrollWidth > tableContainer.clientWidth) {
+                    tableContainer.classList.add('has-scroll');
+
+                    // Add scroll indicator
+                    const scrollIndicator = document.createElement('div');
+                    scrollIndicator.className = 'scroll-indicator';
+                    scrollIndicator.innerHTML = '→';
+                    scrollIndicator.style.cssText = `
+                        position: absolute;
+                        right: 10px;
+                        top: 50%;
+                        transform: translateY(-50%);
+                        color: var(--gray-dark);
+                        font-size: 1.2rem;
+                        pointer-events: none;
+                        opacity: 0.7;
+                        z-index: 10;
+                    `;
+                    tableContainer.style.position = 'relative';
+                    tableContainer.appendChild(scrollIndicator);
+                }
+            }
+
+            // Add haptic feedback for buttons (if supported)
+            const buttons = document.querySelectorAll('.profile-btn');
+            buttons.forEach(button => {
+                button.addEventListener('click', function() {
+                    if ('vibrate' in navigator) {
+                        navigator.vibrate(50);
+                    }
+                });
+            });
+        }
+
+        // Optimize chart canvas for mobile
+        const canvases = document.querySelectorAll('canvas');
+        canvases.forEach(canvas => {
+            if (window.innerWidth <= 600) {
+                canvas.style.maxHeight = '200px';
+            } else if (window.innerWidth <= 768) {
+                canvas.style.maxHeight = '250px';
+            }
+        });
     });
 </script>
+
+<style>
+/* Additional mobile-specific styles for track progress */
+@media (max-width: 768px) {
+    .chart-wrapper canvas {
+        max-height: 250px !important;
+    }
+
+    /* Improve form focus states on mobile */
+    .form-control:focus {
+        transform: scale(1.02);
+        transition: transform 0.2s ease;
+    }
+
+    /* Better button press feedback */
+    .profile-btn:active {
+        transform: scale(0.98);
+        transition: transform 0.1s ease;
+    }
+
+    /* Improve table readability on mobile */
+    .progress-table td:first-child {
+        font-weight: 600;
+        color: var(--primary-color);
+    }
+}
+
+@media (max-width: 600px) {
+    .chart-wrapper canvas {
+        max-height: 200px !important;
+    }
+
+    /* Stack chart containers vertically with better spacing */
+    .chart-container {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    /* Improve no-data message visibility */
+    .no-data-message {
+        min-height: 150px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .chart-wrapper canvas {
+        max-height: 180px !important;
+    }
+
+    /* Ultra-compact layout for very small screens */
+    .progress-container {
+        padding: 0 0.5rem;
+    }
+
+    .profile-card-header {
+        text-align: center;
+    }
+
+    .profile-card-header h4 {
+        font-size: 0.9rem;
+        line-height: 1.2;
+    }
+}
+</style>
 {% endblock %}

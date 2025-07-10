@@ -155,64 +155,6 @@
     transform: scale(1.02);
 }
 
-/* Navigation Updates */
-.navbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-    position: relative;
-    padding: 0.5rem 0;
-}
-
-.links-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 2rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.links a {
-    text-decoration: none;
-    color: #333;
-    font-family: "Poppins", sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
-    padding: 8px 0;
-    transition: color 0.3s ease;
-    position: relative;
-}
-
-.links a:hover {
-    color: #FF8C00;
-}
-
-.links a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #FF8C00;
-    transition: width 0.3s ease;
-}
-
-.links a:hover::after {
-    width: 100%;
-}
-
-/* Header Main */
-.header-main {
-    background: white;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-}
 
 /* Features Section Styles */
 .features-section {
@@ -305,8 +247,8 @@
     }
 
     .hero-food-image {
-        width: 600px;
-        height: 600px;
+        width: 450px;
+        height: 450px;
     }
 
     .hero-left {
@@ -516,22 +458,28 @@
         font-size: 1.8rem;
         line-height: 1.1;
         margin-bottom: 0.8rem;
+        word-spacing: normal;
     }
 
     .hero-description {
         font-size: 0.85rem;
         margin-bottom: 1.2rem;
         line-height: 1.4;
+        word-spacing: normal;
     }
 
     .hero-food-image {
         width: 250px;
         height: 250px;
+        max-width: 90vw;
+        max-height: 90vw;
     }
 
     .hero-btn {
         padding: 0.6rem 1.2rem;
         font-size: 0.85rem;
+        min-height: 44px;
+        border-radius: 6px;
     }
 
     .features-title {
@@ -545,6 +493,7 @@
 
     .feature-card {
         margin-bottom: 1rem;
+        border-radius: 10px;
     }
 
     .feature-card .card-body {
@@ -564,5 +513,241 @@
     .feature-card i {
         font-size: 1.8rem !important;
         margin-bottom: 0.8rem !important;
+    }
+}
+
+/* Enhanced Mobile Optimizations */
+@media (max-width: 600px) {
+    /* Container improvements */
+    .hero-container {
+        padding: 0 1rem;
+        max-width: 100%;
+    }
+
+    .wrapper {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+
+    /* Hero section mobile-first approach */
+    .hero-section-home {
+        height: auto;
+        min-height: 100vh;
+        padding: 1rem 0;
+    }
+
+    .hero-wrapper {
+        flex-direction: column;
+        gap: 2rem;
+        align-items: center;
+        text-align: center;
+    }
+
+    .hero-left {
+        flex: none;
+        width: 100%;
+        padding-right: 0;
+        order: 1;
+    }
+
+    .hero-right {
+        flex: none;
+        width: 100%;
+        order: 2;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: 0;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        line-height: 1.2;
+        margin-bottom: 1rem;
+        word-spacing: 5px;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        max-width: 90%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-btn {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.9rem;
+        min-height: 48px;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(25, 135, 84, 0.3);
+    }
+
+    .hero-btn:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 6px 16px rgba(25, 135, 84, 0.4);
+    }
+
+    .hero-food-image {
+        width: 320px;
+        height: 320px;
+        max-width: 85vw;
+        max-height: 85vw;
+    }
+
+    /* Features section mobile improvements */
+    .features-section {
+        padding: 2rem 0;
+    }
+
+    .features-title {
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+
+    .feature-card {
+        margin-bottom: 1.5rem;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s ease;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .feature-card .card-body {
+        padding: 1.5rem;
+        text-align: center;
+    }
+
+    .feature-card .card-title {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+        color: #333;
+        font-weight: 600;
+    }
+
+    .feature-card .card-text {
+        font-size: 0.9rem;
+        line-height: 1.6;
+        color: #666;
+    }
+
+    .feature-card i {
+        font-size: 2.5rem !important;
+        margin-bottom: 1rem !important;
+        color: var(--primary-color, #87B53D);
+    }
+}
+
+/* Ultra small mobile optimizations */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 1.8rem;
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-description {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        margin-bottom: 1.2rem;
+    }
+
+    .hero-btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.85rem;
+        min-height: 44px;
+    }
+
+    .hero-food-image {
+        width: 260px;
+        height: 260px;
+        max-width: 90vw;
+        max-height: 90vw;
+    }
+
+    .features-title {
+        font-size: 1.7rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .feature-card .card-body {
+        padding: 1.2rem;
+    }
+
+    .feature-card .card-title {
+        font-size: 1.1rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .feature-card .card-text {
+        font-size: 0.85rem;
+        line-height: 1.5;
+    }
+
+    .feature-card i {
+        font-size: 2rem !important;
+        margin-bottom: 0.8rem !important;
+    }
+
+    .wrapper {
+        padding-left: 0.8rem;
+        padding-right: 0.8rem;
+    }
+}
+
+/* Landscape mobile orientation */
+@media (max-width: 900px) and (orientation: landscape) and (max-height: 500px) {
+    .hero-section-home {
+        height: auto;
+        min-height: auto;
+        padding: 1rem 0;
+    }
+
+    .hero-wrapper {
+        flex-direction: row;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .hero-left, .hero-right {
+        flex: 1;
+        width: 50%;
+    }
+
+    .hero-left {
+        order: 1;
+        text-align: left;
+    }
+
+    .hero-right {
+        order: 2;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        line-height: 1.1;
+        margin-bottom: 0.8rem;
+    }
+
+    .hero-description {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        margin-bottom: 1rem;
+    }
+
+    .hero-food-image {
+        width: 250px;
+        height: 250px;
+    }
+
+    .features-section {
+        padding: 1.5rem 0;
     }
 }

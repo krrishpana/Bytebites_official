@@ -4,112 +4,507 @@
 {% block title %}How It Works{% endblock %}
 
 {% block extra_head %}
-<link rel="stylesheet" href="{% static 'css/how-it-works.css' %}">
+<style>
+/* Clean, modern CSS for How It Works page */
+.hero-section {
+    padding: 4rem 0;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+}
+
+.hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.hero-title {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: #6c757d;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.features-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin: 2rem 0;
+}
+
+.feature-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-left: 4px solid #87B53D;
+}
+
+.feature-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 0.5rem 0;
+}
+
+.feature-description {
+    font-size: 0.95rem;
+    color: #6c757d;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #87B53D;
+    color: white;
+    padding: 1rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.cta-button:hover {
+    background: #6a9230;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(135, 181, 61, 0.3);
+    color: white;
+    text-decoration: none;
+}
+
+.hero-image {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.main-image {
+    width: 100%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.help-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    text-align: center;
+    max-width: 350px;
+}
+
+.help-link {
+    color: #87B53D;
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.help-title {
+    font-size: 1.3rem;
+    color: #2c3e50;
+    margin: 0.5rem 0;
+    font-weight: 600;
+}
+
+.help-text {
+    font-size: 0.9rem;
+    color: #6c757d;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Steps Section */
+.steps-section {
+    padding: 4rem 0;
+    background: white;
+}
+
+.steps-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.steps-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0 0 1rem 0;
+}
+
+.steps-subtitle {
+    font-size: 1.1rem;
+    color: #6c757d;
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+.steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.step-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #f1f3f4;
+}
+
+.step-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.step-number {
+    width: 50px;
+    height: 50px;
+    background: #87B53D;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 auto 1rem auto;
+}
+
+.step-icon {
+    font-size: 2.5rem;
+    color: #87B53D;
+    margin-bottom: 1rem;
+}
+
+.step-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin: 0 0 1rem 0;
+}
+
+.step-description {
+    font-size: 0.95rem;
+    color: #6c757d;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Enhanced Responsive Design */
+
+/* Extra Large Screens (1536px and below) */
+@media (max-width: 1536px) {
+    .hero-title {
+        font-size: 2.8rem;
+    }
+
+    .steps-title {
+        font-size: 2.3rem;
+    }
+}
+
+/* Large Screens (1280px and below) */
+@media (max-width: 1280px) {
+    .hero-content {
+        gap: 3rem;
+    }
+
+    .hero-title {
+        font-size: 2.6rem;
+    }
+
+    .features-grid {
+        gap: 1.2rem;
+    }
+
+    .steps-title {
+        font-size: 2.2rem;
+    }
+}
+
+/* Medium Screens (1024px and below) */
+@media (max-width: 1024px) {
+    .hero-section {
+        padding: 3rem 0;
+    }
+
+    .steps-section {
+        padding: 3rem 0;
+    }
+
+    .hero-title {
+        font-size: 2.4rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.8rem;
+    }
+}
+
+/* Tablet Screens (768px and below) */
+@media (max-width: 768px) {
+    .hero-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .hero-title {
+        font-size: 2.2rem;
+        text-align: center;
+    }
+
+    .hero-description {
+        text-align: center;
+    }
+
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .steps-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .steps-title {
+        font-size: 2rem;
+    }
+
+    .cta-button {
+        align-self: center;
+    }
+}
+
+/* Small Mobile Screens (640px and below) */
+@media (max-width: 640px) {
+    .hero-section {
+        padding: 2.5rem 0;
+    }
+
+    .steps-section {
+        padding: 2.5rem 0;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+    }
+
+    .steps-title {
+        font-size: 1.8rem;
+    }
+
+    .feature-card,
+    .step-card {
+        padding: 1.3rem;
+    }
+
+    .hero-description {
+        font-size: 1rem;
+    }
+
+    .steps-subtitle {
+        font-size: 1rem;
+    }
+}
+
+/* Extra Small Mobile Screens (480px and below) */
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 2rem 0;
+    }
+
+    .steps-section {
+        padding: 2rem 0;
+    }
+
+    .hero-title {
+        font-size: 1.8rem;
+    }
+
+    .steps-title {
+        font-size: 1.6rem;
+    }
+
+    .feature-card,
+    .step-card {
+        padding: 1.2rem;
+    }
+
+    .hero-description {
+        font-size: 0.95rem;
+    }
+
+    .steps-subtitle {
+        font-size: 0.95rem;
+    }
+
+    .cta-button {
+        padding: 0.8rem 1.5rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Very Small Mobile Screens (400px and below) */
+@media (max-width: 400px) {
+    .hero-title {
+        font-size: 1.6rem;
+    }
+
+    .steps-title {
+        font-size: 1.4rem;
+    }
+
+    .feature-card,
+    .step-card {
+        padding: 1rem;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
+
+    .step-icon {
+        font-size: 2rem;
+    }
+
+    .step-title {
+        font-size: 1.1rem;
+    }
+
+    .feature-title {
+        font-size: 1.1rem;
+    }
+}
+</style>
 {% endblock %}
 
 {% block content %}
-<section class="how-it-works-container">
+<!-- Hero Section -->
+<section class="hero-section">
     <div class="wrapper">
-        <!-- Left Column - Text Content -->
-        <div class="how-it-works-text-container">
-            <div class="main-text-section">
-                <h1>How It Works</h1>
-                <pre>
-ByteBites is designed to be user-friendly and intuitive.
-Simply sign up and explore our features to create a
-personalized nutrition plan that fits your lifestyle and goals.
+        <div class="hero-content">
+            <!-- Left Column - Text Content -->
+            <div class="hero-text">
+                <h1 class="hero-title">How It Works</h1>
+                <p class="hero-description">
+                    ByteBites is designed to be user-friendly and intuitive. Simply sign up and explore our features to create a personalized nutrition plan that fits your lifestyle and goals.
+                </p>
+                <p class="hero-description">
+                    Each tool is carefully crafted to ensure smooth functionality and accurate nutrition guidance. We aim to make healthy eating easier with minimal effort.
+                </p>
 
-Each tool is carefully crafted to ensure smooth functionality
-and accurate nutrition guidance. We aim to make healthy eating
-easier with minimal effort.
-
-Enjoy seamless navigation, allowing you to focus on what
-matters most - your health and nutrition goals. We're here
-to help every step of the way!
-                </pre>
-            </div>
-
-            <div class="plans-container">
-                <div class="plan-section">
-                    <div class="section-plans">
-                        <div class="plans-text-container">
-                            <h4>Personalized Plans</h4>
-                            <p>Get customized meal suggestions tailored to your specific fitness goals, dietary preferences, and nutritional needs.</p>
-                        </div>
+                <!-- Features Grid -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h4 class="feature-title">Personalized Plans</h4>
+                        <p class="feature-description">Get customized meal suggestions tailored to your specific fitness goals, dietary preferences, and nutritional needs.</p>
                     </div>
-                    <div class="section-plans">
-                        <div class="plans-text-container">
-                            <h4>Smart Food Insights</h4>
-                            <p>Track macronutrients (carbs, protein, and fats) and calories in every meal with our intelligent nutrition analysis.</p>
-                        </div>
+                    <div class="feature-card">
+                        <h4 class="feature-title">Smart Food Insights</h4>
+                        <p class="feature-description">Track macronutrients (carbs, protein, and fats) and calories in every meal with our intelligent nutrition analysis.</p>
                     </div>
+                </div>
+
+                <!-- CTA Button -->
+                <div>
+                    <a href="{% url 'register' %}" class="cta-button">
+                        <i class="fas fa-user-plus"></i>
+                        Get Started
+                    </a>
                 </div>
             </div>
 
-            <div class="button-holder1">
-                <a href="{% url 'register' %}" class="how-it-works-btn">
-                    <i class="fas fa-user-plus"></i> Get Started
-                </a>
-            </div>
-        </div>
+            <!-- Right Column - Image -->
+            <div class="hero-image">
+                <img src="{% static 'image/how-it-works.png' %}" alt="Nutrition Planning" class="main-image">
 
-        <!-- Right Column - Image -->
-        <div class="how-it-works-img-container">
-            <img src="{% static 'image/how-it-works.png' %}" alt="Nutrition Planning" class="how-it-works-img">
-            <div class="on-img-info">
-                <a href="{% url 'register' %}">Need help with your nutrition goals?</a>
-                <h2>Looking for guidance?</h2>
-                <p>We're here to help you with smart food choices to help you gain, lose, or maintain your weight - backed by science and tailored to your individual needs.</p>
+                <!-- Help Card -->
+                <div class="help-card">
+                    <a href="{% url 'register' %}" class="help-link">Need help with your nutrition goals?</a>
+                    <h3 class="help-title">Looking for guidance?</h3>
+                    <p class="help-text">We're here to help you with smart food choices to help you gain, lose, or maintain your weight - backed by science and tailored to your individual needs.</p>
+                </div>
             </div>
         </div>
     </div>
+</section>
 
-    <!-- Steps Section -->
-    <section class="how-it-works-steps">
-        <div class="wrapper">
-            <header class="steps-header">
-                <h2>Simple Steps to Better Nutrition</h2>
-                <p>Follow these easy steps to get started with ByteBites and begin your journey to better health through personalized nutrition.</p>
-            </header>
+<!-- Steps Section -->
+<section class="steps-section">
+    <div class="wrapper">
+        <header class="steps-header">
+            <h2 class="steps-title">Simple Steps to Better Nutrition</h2>
+            <p class="steps-subtitle">Follow these easy steps to get started with ByteBites and begin your journey to better health through personalized nutrition.</p>
+        </header>
 
-            <div class="steps-container">
-                <article class="step-card">
-                    <div class="step-number">1</div>
-                    <div class="step-icon">
-                        <i class="fas fa-user-plus" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="step-title">Create Your Account</h3>
-                    <p class="step-description">Sign up for a free account to access all our nutrition planning features and personalized recommendations.</p>
-                </article>
+        <div class="steps-grid">
+            <article class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-icon">
+                    <i class="fas fa-user-plus" aria-hidden="true"></i>
+                </div>
+                <h3 class="step-title">Create Your Account</h3>
+                <p class="step-description">Sign up for a free account to access all our nutrition planning features and personalized recommendations.</p>
+            </article>
 
-                <article class="step-card">
-                    <div class="step-number">2</div>
-                    <div class="step-icon">
-                        <i class="fas fa-clipboard-list" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="step-title">Complete Your Profile</h3>
-                    <p class="step-description">Enter your health metrics, dietary preferences, and fitness goals to help us create your personalized plan.</p>
-                </article>
+            <article class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-icon">
+                    <i class="fas fa-clipboard-list" aria-hidden="true"></i>
+                </div>
+                <h3 class="step-title">Complete Your Profile</h3>
+                <p class="step-description">Enter your health metrics, dietary preferences, and fitness goals to help us create your personalized plan.</p>
+            </article>
 
-                <article class="step-card">
-                    <div class="step-number">3</div>
-                    <div class="step-icon">
-                        <i class="fas fa-utensils" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="step-title">Get Your Diet Plan</h3>
-                    <p class="step-description">Receive a customized nutrition plan with meal suggestions that align with your goals and preferences.</p>
-                </article>
+            <article class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-icon">
+                    <i class="fas fa-utensils" aria-hidden="true"></i>
+                </div>
+                <h3 class="step-title">Get Your Diet Plan</h3>
+                <p class="step-description">Receive a customized nutrition plan with meal suggestions that align with your goals and preferences.</p>
+            </article>
 
-                <article class="step-card">
-                    <div class="step-number">4</div>
-                    <div class="step-icon">
-                        <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    </div>
-                    <h3 class="step-title">Track Your Progress</h3>
-                    <p class="step-description">Monitor your nutrition journey, adjust your plan as needed, and celebrate your achievements.</p>
-                </article>
-            </div>
+            <article class="step-card">
+                <div class="step-number">4</div>
+                <div class="step-icon">
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
+                </div>
+                <h3 class="step-title">Track Your Progress</h3>
+                <p class="step-description">Monitor your nutrition journey, adjust your plan as needed, and celebrate your achievements.</p>
+            </article>
         </div>
-    </section>
+    </div>
 </section>
 {% endblock %}

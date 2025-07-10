@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
@@ -12,6 +12,7 @@ import os
 import base64
 from .utils import get_dietary_status_message
 from django.utils import timezone
+import google.generativeai as genai
 
 from django.contrib.auth import logout
 from django.contrib import messages
@@ -21,7 +22,76 @@ from django.contrib.sessions.models import Session
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import time 
+import csv
 
+def load_food_data():
+    """
+    Load food data from Food Data.csv file
+    Returns a dictionary with food names as keys and nutritional info as values
+    """
+    food_data = {}
+    csv_file_path = os.path.join(settings.BASE_DIR, 'Food Data.csv')
+    
+    try:
+        with open(csv_file_path, 'r', encoding='utf-8') as file:
+            csv_reader = csv.DictReader(file)
+            for row in csv_reader:
+                # Skip empty rows
+                if not row.get('Food Name') or row['Food Name'].strip() == '':
+                    continue
+                
+                food_name = row['Food Name'].strip()
+                
+                # Handle different possible column names
+                calories = row.get('Calories (kcal)', row.get('Calories', '')).strip()
+                carbs = row.get('Carbohydrates (g)', row.get('Carbs (g)', row.get('Carbs', ''))).strip()
+                protein = row.get('Protein (g)', row.get('Protein', '')).strip()
+                fats = row.get('Fats (g)', row.get('Fat (g)', row.get('Fats', row.get('Fat', '')))).strip()
+                
+                # Clean up the data (remove ~, commas, etc.)
+                calories = calories.replace('~', '').replace(',', '') if calories else '0'
+                carbs = carbs.replace('~', '').replace(',', '') if carbs else '0'
+                protein = protein.replace('~', '').replace(',', '') if protein else '0'
+                fats = fats.replace('~', '').replace(',', '') if fats else '0'
+                
+                food_data[food_name.lower()] = {
+                    'name': food_name,
+                    'category': row.get('Category', '').strip(),
+                    'serving_size': row.get('Typical Serving Size', row.get('Serving Size', '')).strip(),
+                    'calories': calories,
+                    'carbs': carbs,
+                    'protein': protein,
+                    'fats': fats,
+                    'fiber': row.get('Fiber (g)', row.get('Fiber', '')).strip(),
+                    'micronutrients': row.get('Micronutrients', row.get('Key Micronutrients', '')).strip(),
+                    'preparation_notes': row.get('Preparation Notes', '').strip()
+                }
+    except FileNotFoundError:
+        print(f"Food Data.csv file not found at {csv_file_path}")
+        return {}
+    except Exception as e:
+        print(f"Error reading Food Data.csv: {e}")
+        return {}
+    
+    return food_data
+
+def get_food_nutrition(food_name, food_data):
+    """
+    Get nutritional information for a specific food item
+    Returns the food data if found, None otherwise
+    """
+    food_name_lower = food_name.lower().strip()
+    
+    # Direct match
+    if food_name_lower in food_data:
+        return food_data[food_name_lower]
+    
+    # Partial match (check if food name contains the search term)
+    for key, value in food_data.items():
+        if food_name_lower in key or key in food_name_lower:
+            return value
+    
+    return None
 
 def home(request):
     return render(request, 'nutrition/home.html')
@@ -36,6 +106,12 @@ def register(request):
 
             UserProfile.objects.create(user=user)
             return redirect('login')
+        else:
+            # Extract email-specific errors to display them more prominently
+            email_errors = form.errors.get('email', None)
+            if email_errors:
+                for error in email_errors:
+                    messages.error(request, f"Email error: {error}")
     else:
         form = UserRegisterForm()
     return render(request, 'nutrition/register.html', {'form': form})
@@ -225,6 +301,40 @@ def diet_plan(request):
         try:
             gemini_client = GeminiClient(api_key=settings.GEMINI_API_KEY, model_name=settings.GEMINI_MODEL)
 
+            # Load food data from CSV
+            food_data = load_food_data()
+            
+            if not food_data:
+                messages.warning(request, "Food database could not be loaded. Using default nutritional values.")
+                print("Warning: Food Data.csv not found or could not be read")
+            
+            print(f"Loaded {len(food_data)} foods from Food Data.csv")
+            
+            # Create a list of available Nepali foods for the AI to choose from
+            nepali_foods = []
+            for food_name, food_info in food_data.items():
+                if food_info['calories'] and food_info['calories'].isdigit():
+                    nepali_foods.append({
+                        'name': food_info['name'],
+                        'calories': food_info['calories'],
+                        'carbs': food_info['carbs'] if food_info['carbs'] else '0',
+                        'protein': food_info['protein'] if food_info['protein'] else '0',
+                        'fats': food_info['fats'] if food_info['fats'] else '0',
+                        'serving_size': food_info['serving_size'],
+                        'category': food_info['category']
+                    })
+            
+            print(f"Processed {len(nepali_foods)} foods with valid nutritional data")
+
+            # Filter foods based on diet preference
+            if profile.diet_preference == 'veg':
+                nepali_foods = [food for food in nepali_foods if 'meat' not in food['name'].lower() and 'chicken' not in food['name'].lower() and 'buffalo' not in food['name'].lower() and 'mutton' not in food['name'].lower() and 'pork' not in food['name'].lower() and 'goat' not in food['name'].lower()]
+
+            # Create food database string for the prompt
+            food_database = "Available Nepali Foods with Nutritional Information:\n"
+            for food in nepali_foods[:50]:  # Limit to first 50 foods to avoid token limits
+                food_database += f"- {food['name']}: {food['serving_size']}, {food['calories']} cal, {food['carbs']}g carbs, {food['protein']}g protein, {food['fats']}g fat ({food['category']})\n"
+
             prompt = f"""
             Generate a personalized daily diet plan for a user with the following characteristics:
 - Age: {profile.age} years
@@ -239,8 +349,12 @@ def diet_plan(request):
 - Goal: {profile.get_goal_display()}
 - Allergies or Disliked Foods: {profile.allergies if profile.allergies else 'None'}
 
-🛑 Important:
-Format each meal (Breakfast, Snack, Lunch, etc.) using **Markdown tables** with the following headers:
+{food_database}
+
+🛑 Important Instructions:
+1. **PRIORITIZE FOODS FROM THE PROVIDED DATABASE** - Use the exact food names and nutritional values from the database above
+2. If a food is not in the database, you can suggest other Nepali foods but use approximate nutritional values
+3. Format each meal (Breakfast, Snack, Lunch, etc.) using **Markdown tables** with the following headers:
 
 | Food Item | Portion Size | Calories | Protein (g) | Carbs (g) | Fat (g) |
 
@@ -249,19 +363,19 @@ Format each meal (Breakfast, Snack, Lunch, etc.) using **Markdown tables** with 
 ## Breakfast (Approx. 400 Calories)
 | Food Item | Portion Size | Calories | Protein (g) | Carbs (g) | Fat (g) |
 |-----------|--------------|----------|-------------|-----------|---------|
-| Oatmeal   | 1 cup        | 150      | 5           | 27        | 3       |
+| Dal Bhat  | 1 plate      | 450      | 14          | 70        | 10      |
 | Banana    | 1 medium     | 100      | 1           | 25        | 0       |
 
-Total: **400 Calories**
+Total: **550 Calories**
 
-🔁 After each meal, provide a section titled “### Alternatives” with 1–2 alternative food suggestions in bullet point format.
+🔁 After each meal, provide a section titled "### Alternatives" with 1–2 alternative food suggestions from the database in bullet point format.
 
 ⚠️ Do NOT use bullet points for the main meal. Only use markdown tables for them.
 
 The entire plan must:
 - Match the calorie target as closely as possible
 - Respect diet preferences and allergies
-- Be Nepali-style
+- Be Nepali-style using foods from the database when possible
 - Be clearly structured and visually neat
 
 Begin the output with the Calorie Summary like this:
@@ -269,7 +383,11 @@ Begin the output with the Calorie Summary like this:
             """
 
            
+            # Generate the diet plan
             generated_text = gemini_client.generate_text(prompt)
+            
+            # Validate and improve the generated plan with accurate nutritional data
+            generated_text = validate_and_improve_diet_plan(generated_text, food_data, profile)
            
 
             
@@ -494,9 +612,178 @@ def aboutus(request):
 def how_it_works(request):
     return render(request, 'nutrition/how-it-works.html')
 
-def chatbot(request):
-    """
-    View for the chatbot interface using WebSockets
-    """
-    return render(request, 'nutrition/chatbot.html')
+@login_required
+def chat(request):
+    return render(request, 'nutrition/chat.html')
 
+@csrf_exempt
+@login_required
+def chatbot_api(request):
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body)
+            user_message = data.get('message', '')
+            chat_history = data.get('chat_history', [])
+            user_profile = data.get('user_profile', None)
+            
+            # Configure Google API
+            GOOGLE_API_KEY = "AIzaSyD2JrW72oo2aRwOIhDNNgoQ7FSNfv67lRQ"
+            genai.configure(api_key=GOOGLE_API_KEY)
+            model = genai.GenerativeModel('gemini-2.5-flash-preview-04-17')
+            
+            # Format chat history
+            chat_history_string = "No previous conversation turns in this session yet."
+            if chat_history:
+                formatted_history = []
+                for msg in chat_history[-6:]:  # Last 3 turns (user + assistant)
+                    role = "User" if msg["role"] == "user" else "Assistant"
+                    formatted_history.append(f"{role}: {msg['content']}")
+                chat_history_string = "\n".join(formatted_history)
+            
+            # Format user profile
+            user_profile_details_string = "No profile information provided by the user yet."
+            if user_profile:
+                bmi, bmr = calculate_health_metrics(
+                        user_profile['weight_kg'],
+                        user_profile['height_cm'],
+                        user_profile['age'],
+                        user_profile['gender']
+                    )
+
+                tdee = calculate_tdee(bmr, user_profile['activity_level']) if bmr is not None else None
+                
+                details = [
+                    f"Name: {user_profile['name']}",
+                    f"Age: {user_profile['age']} years",
+                    f"Height: {user_profile['height_cm']} cm",
+                    f"Weight: {user_profile['weight_kg']} kg",
+                    f"Gender: {user_profile['gender'].title()}",
+                    f"Activity Level: {user_profile['activity_level']}"
+                ]
+                
+                if bmi is not None:
+                    details.append(f"BMI: {bmi}")
+                if bmr is not None:
+                    details.append(f"BMR: {bmr} kcal/day")
+                if tdee is not None:
+                    details.append(f"TDEE: {tdee} kcal/day")
+                
+                user_profile_details_string = "\n".join(details)
+            
+            # System prompt template
+            SYSTEM_PROMPT_TEMPLATE = """You are a friendly, encouraging, and expert Nepali Nutrition & Wellness Assistant. 
+Your primary goal is to help users with their nutrition, diet plans, and promote a healthy lifestyle with a strong focus on Nepali cuisine and culture. 
+Your tone should be positive, supportive, and natural, like a knowledgeable friend. *Your responses should be very concise, like short chat messages. Aim for 1-3 sentences per turn unless providing a list or steps.*
+
+*Chat History (Recent Turns):*
+{chat_history}
+
+*User Profile Information:*
+{user_profile_details}
+
+Based on all the above (including chat history if relevant), please answer the user's current question. Remember: be concise, natural, conversational, and use installments for longer answers, always checking if the user wants to proceed.
+User Question: {user_question}
+Answer:"""
+            
+            final_prompt = SYSTEM_PROMPT_TEMPLATE.format(
+                chat_history=chat_history_string,
+                user_profile_details=user_profile_details_string,
+                user_question=user_message
+            )
+            
+            response = model.generate_content(final_prompt)
+            assistant_response = response.text
+            
+            return JsonResponse({
+                'message': assistant_response
+            })
+            
+        except Exception as e:
+            return JsonResponse({
+                'error': str(e)
+            }, status=500)
+    
+    return JsonResponse({'error': 'Only POST requests are allowed'}, status=405)
+
+@login_required
+def book_appointment(request):
+    if request.method == 'POST':
+        messages.success(request, 'Your appointment request has been submitted successfully!')
+        return redirect('diet_plan')
+    return render(request, 'nutrition/book_appointment.html')
+
+@login_required
+def disease(request):
+    user_profile = get_object_or_404(UserProfile, user=request.user)
+    
+    if request.method == 'POST':
+        user_profile.diseases = request.POST.get('diseases', '')
+        user_profile.medications = request.POST.get('medications', '')
+        user_profile.dietary_restrictions = request.POST.get('dietary_restrictions', '')
+        user_profile.save()
+        messages.success(request, 'Disease management information updated successfully.')
+        return redirect('disease')
+    
+    return render(request, 'nutrition/disease.html', {
+        'user_profile': user_profile,
+    })
+
+def validate_and_improve_diet_plan(generated_text, food_data, profile):
+    """
+    Validate and improve the generated diet plan by cross-referencing with food database
+    """
+    try:
+        # Split the generated text into lines
+        lines = generated_text.split('\n')
+        improved_lines = []
+        
+        for line in lines:
+            # Check if this line contains a food item in a table
+            if '|' in line and any(food_name in line.lower() for food_name in food_data.keys()):
+                # Try to find and replace with accurate nutritional data
+                for food_name, food_info in food_data.items():
+                    if food_name in line.lower():
+                        # Extract the portion size from the line
+                        parts = line.split('|')
+                        if len(parts) >= 3:
+                            food_item = parts[1].strip()
+                            portion_size = parts[2].strip()
+                            
+                            # Use the exact nutritional values from the database
+                            calories = food_info['calories'] if food_info['calories'] else '0'
+                            carbs = food_info['carbs'] if food_info['carbs'] else '0'
+                            protein = food_info['protein'] if food_info['protein'] else '0'
+                            fats = food_info['fats'] if food_info['fats'] else '0'
+                            
+                            # Reconstruct the line with accurate data
+                            improved_line = f"| {food_info['name']} | {food_info['serving_size']} | {calories} | {protein} | {carbs} | {fats} |"
+                            improved_lines.append(improved_line)
+                            break
+                else:
+                    # If no match found, keep the original line
+                    improved_lines.append(line)
+            else:
+                # Keep non-table lines as they are
+                improved_lines.append(line)
+        
+        return '\n'.join(improved_lines)
+    except Exception as e:
+        print(f"Error validating diet plan: {e}")
+        return generated_text
+
+def test_food_data(request):
+    """
+    Test function to verify food data loading (for debugging)
+    """
+    food_data = load_food_data()
+    
+    if food_data:
+        # Show first 5 foods as a test
+        test_foods = list(food_data.items())[:5]
+        result = "Food Data loaded successfully!\n\nFirst 5 foods:\n"
+        for food_name, food_info in test_foods:
+            result += f"- {food_info['name']}: {food_info['calories']} cal, {food_info['carbs']}g carbs, {food_info['protein']}g protein, {food_info['fats']}g fat\n"
+    else:
+        result = "Failed to load food data from CSV file."
+    
+    return JsonResponse({'result': result, 'total_foods': len(food_data)})

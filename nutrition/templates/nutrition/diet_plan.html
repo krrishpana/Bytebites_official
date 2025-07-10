@@ -10,6 +10,8 @@
 {% load markdown_extras %}
 
 {% block content %}
+
+
 <div class="diet-plan-container">
     <div class="profile-card">
         <div class="profile-card-header">
@@ -83,8 +85,18 @@
             </div>
         </div>
     </div>
-</div>
 
+    <!-- Doctor Section -->
+    <div class="doctor-section mt-4">
+        <div class="d-flex justify-content-center align-items-center">
+            <span class="text-muted me-3">If you need professional guidance </span>
+            <a href="{% url 'book_appointment' %}" class="profile-btn primary">
+                <i class="fas fa-user-md"></i> Doctor
+            </a>
+        </div>
+    </div>
+</div>
+<br>
 <!-- Modal for Regenerating Plan -->
 <div class="modal fade" id="regeneratePlanModal" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog">
