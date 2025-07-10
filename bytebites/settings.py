@@ -8,7 +8,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-bytebites-dev-key-replace-in-production')
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+
+ALLOWED_HOSTS = [
+    'bytebites-hzhqbsbfdkheefcx.canadacentral-01.azurewebsites.net',
+    'localhost',
+    '127.0.0.1',
+]
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 
 INSTALLED_APPS = [
