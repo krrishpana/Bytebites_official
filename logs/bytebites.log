@@ -1229,3 +1229,25 @@ WARNING 2025-07-10 09:48:17,168 basehttp "GET /static/css/footer.css HTTP/1.1" 4
 WARNING 2025-07-10 09:48:17,186 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 1883
 WARNING 2025-07-10 09:48:19,326 basehttp "GET /static/css/footer.css HTTP/1.1" 404 1856
 WARNING 2025-07-10 09:48:19,337 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 1883
+WARNING 2025-07-11 06:31:39,644 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 06:31:39,644 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 06:31:39,665 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 06:31:39,666 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 06:31:39,770 log Not Found: /favicon.ico
+WARNING 2025-07-11 06:31:39,770 basehttp "GET /favicon.ico HTTP/1.1" 404 179
+WARNING 2025-07-11 06:32:15,470 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 06:32:15,470 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 06:32:15,471 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 06:32:15,471 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 06:32:32,022 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 06:32:32,023 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 06:32:32,024 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 06:32:32,024 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 06:32:32,060 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 06:32:32,060 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 06:32:36,533 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 06:32:36,534 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 06:32:36,537 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 06:32:36,537 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 06:32:36,570 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 06:32:36,570 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179

@@ -13,6 +13,8 @@ ALLOWED_HOSTS = [
     'bytebites-hzhqbsbfdkheefcx.canadacentral-01.azurewebsites.net',
     'localhost',
     '127.0.0.1',
+    '0.0.0.0'
+
 ]
 
 USE_X_FORWARDED_HOST = True
