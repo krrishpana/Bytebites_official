@@ -1287,3 +1287,25 @@ WARNING 2025-07-11 06:57:37,298 log Not Found: /static/nutrition/js/scripts.js
 WARNING 2025-07-11 06:57:37,299 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
 WARNING 2025-07-11 06:57:37,299 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
 WARNING 2025-07-11 06:57:37,299 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 07:24:39,828 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 07:24:39,829 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 07:24:39,846 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 07:24:39,847 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 07:24:44,389 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 07:24:44,389 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 07:24:44,393 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 07:24:44,393 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 07:24:53,815 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 07:24:53,816 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 07:24:53,819 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 07:24:53,819 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 07:24:53,858 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 07:24:53,858 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 07:35:38,984 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 07:35:38,985 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 07:35:39,003 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 07:35:39,005 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 07:35:43,596 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 07:35:43,597 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 07:35:43,601 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 07:35:43,601 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
