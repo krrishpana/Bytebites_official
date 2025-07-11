@@ -1309,3 +1309,135 @@ WARNING 2025-07-11 07:35:43,596 log Not Found: /static/css/footer.css
 WARNING 2025-07-11 07:35:43,597 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
 WARNING 2025-07-11 07:35:43,601 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
 WARNING 2025-07-11 07:35:43,601 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:26:26,673 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:26:26,675 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:26:26,689 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:26:26,689 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:27:21,165 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:27:21,165 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:27:21,166 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:27:21,166 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:27:24,882 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:27:24,882 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:27:24,886 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:27:24,886 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:28:33,343 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:28:33,346 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:28:33,350 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:28:33,350 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:28:33,375 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:28:33,375 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:28:36,922 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:28:36,922 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:28:36,925 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:28:36,925 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:28:36,949 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:28:36,950 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:30:08,691 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:30:08,694 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:30:08,708 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:30:08,708 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:30:12,741 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:30:12,741 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:30:12,746 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:30:12,746 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:31:54,629 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:31:54,629 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:31:54,649 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:31:54,649 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:31:59,476 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:31:59,476 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:31:59,481 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:31:59,482 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:33:15,699 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:33:15,699 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:33:36,588 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:33:36,589 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:34:33,235 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:34:33,235 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:34:33,240 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:34:33,241 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:34:33,270 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:34:33,270 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:35:57,407 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:35:57,407 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:35:57,423 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:35:57,423 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:35:57,441 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:35:57,442 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:36:20,932 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:36:20,932 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:36:20,949 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:36:20,950 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:36:24,636 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:36:24,637 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:36:24,637 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:36:24,638 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:36:35,497 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:36:35,498 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:36:35,498 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:36:35,498 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:38:20,339 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:38:20,341 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:38:20,344 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:38:20,344 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:38:42,838 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:38:42,838 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:38:42,838 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:38:42,838 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:38:52,357 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:38:52,357 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:38:52,361 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:38:52,362 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:39:57,676 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:39:57,677 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:39:57,695 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:39:57,695 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:39:59,730 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:39:59,731 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:39:59,731 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:39:59,732 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:40:05,407 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:40:05,407 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:40:05,407 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:40:05,408 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:40:05,699 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:40:05,699 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:40:05,699 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:40:05,700 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:40:05,894 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:40:05,894 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:40:05,895 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:40:05,895 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:15,086 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:41:15,088 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:15,091 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:41:15,092 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:15,806 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:41:15,807 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:41:15,807 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:15,807 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:15,989 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:41:15,990 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:41:15,990 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:15,990 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:16,155 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:41:16,156 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:41:16,156 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:16,156 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:16,343 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:41:16,344 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:41:16,344 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:16,344 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:19,900 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:41:19,901 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:41:19,904 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:41:19,904 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179
+WARNING 2025-07-11 11:42:05,851 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:42:05,852 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:42:05,870 log Not Found: /static/nutrition/js/scripts.js
+WARNING 2025-07-11 11:42:05,870 basehttp "GET /static/nutrition/js/scripts.js HTTP/1.1" 404 179
+WARNING 2025-07-11 11:42:09,824 log Not Found: /static/css/footer.css
+WARNING 2025-07-11 11:42:09,824 basehttp "GET /static/css/footer.css HTTP/1.1" 404 179
+WARNING 2025-07-11 11:42:09,828 log Not Found: /.well-known/appspecific/com.chrome.devtools.json
+WARNING 2025-07-11 11:42:09,829 basehttp "GET /.well-known/appspecific/com.chrome.devtools.json HTTP/1.1" 404 179

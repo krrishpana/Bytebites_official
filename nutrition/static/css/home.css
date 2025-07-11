@@ -1,118 +1,100 @@
 /* Custom styles for the home page */
-.hero-section {
+/* Hero Section */
+.hero-section-home {
     position: relative;
     height: 100vh;
     overflow: hidden;
     background-color: #f8f9fa;
+    padding: 2rem 0;
+    width:100%;
 }
 
 .hero-container {
     display: flex;
     height: 100%;
-    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+    padding: 0 2rem;
+    /* gap: 4vw; */
 }
 
-/* Left Green Section */
-.hero-left {
-    width: 65%;
-    background: linear-gradient(135deg, #8BC34A 0%, #7CB342 100%);
-    position: relative;
+/* Enhanced Hero Wrapper for better responsiveness */
+.hero-wrapper {
+    width: 100%;
     display: flex;
     align-items: center;
-    padding: 0 4rem;
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+/* Left Content Section */
+.hero-left {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-right: 3rem;
+    min-width: 0; /* Prevents flex item from overflowing */
 }
 
 .hero-content {
-    color: white;
-    max-width: 500px;
-}
-
-.welcome-text {
-    font-size: 0.9rem;
-    font-weight: 600;
-    letter-spacing: 2px;
-    margin-bottom: 1rem;
-    opacity: 0.9;
-}
-
-.delivery-icon {
-    font-size: 2rem;
-    margin-bottom: 1rem;
+    color: #333;
+    width: 100%;
+    max-width: 100%;
 }
 
 .hero-title {
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 0.9;
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.2;
+    word-spacing: 10px;
     margin-bottom: 1.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    color: #333;
+    font-family: 'Poppins', sans-serif;
+    text-transform: capitalize;
+}
+
+.title-accent {
+    color: #198754;
 }
 
 .hero-description {
-    font-size: 1.1rem;
+    font-size: 1rem;
     line-height: 1.6;
-    margin-bottom: 2rem;
-    opacity: 0.95;
-}
-
-.hero-stats {
-    display: flex;
-    gap: 2rem;
     margin-bottom: 2.5rem;
-}
-
-.stat-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.stat-number {
-    font-size: 1.2rem;
-    font-weight: 700;
-    background: rgba(255,255,255,0.2);
-    padding: 0.3rem 0.6rem;
-    border-radius: 50%;
-    min-width: 2.5rem;
-    text-align: center;
-}
-
-.stat-label {
-    font-size: 0.9rem;
-    opacity: 0.9;
+    color: #666;
+    word-spacing: 2px;
+    font-family: 'Inter', sans-serif;
 }
 
 .hero-btn {
-    background: white;
-    color: #8BC34A;
+    background: #198754;
+    color: white;
     border: none;
-    padding: 1rem 2.5rem;
-    font-size: 1.1rem;
+    padding: 1rem 2rem;
+    font-size: 1rem;
     font-weight: 600;
-    border-radius: 50px;
+    border-radius: 8px;
     cursor: pointer;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 4px 15px rgba(255, 140, 0, 0.3);
+    font-family: 'Poppins', sans-serif;
 }
 
 .hero-btn:hover {
+    background: #87B53D;
     transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4);
 }
 
 /* Right Image Section */
 .hero-right {
-    width: 50%;
-    height: 116%;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    right: -34px;
-    top: -8%;
-    border-radius: 50%;
-    background: #f8f9fa;
+    position: relative;
+    min-width: 0; /* Prevents flex item from overflowing */
 }
 
 .hero-image-container {
@@ -120,39 +102,21 @@
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.image-circle {
-    width: 350px;
-    height: 350px;
-    border-radius: 50%;
-    background: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.image-circle::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(139,195,74,0.1) 0%, transparent 70%);
-    animation: rotate 20s linear infinite;
+    background-color: #f8f9fa;
 }
 
 .hero-food-image {
-    width: 280px;
-    height: 280px;
+    width: 800px;
+    height: 800px;
+    /* max-width: 100%;
+    max-height: 100%; */
     object-fit: cover;
     border-radius: 50%;
-    position: relative;
-    z-index: 2;
+    transition: transform 0.3s ease;
+}
+
+.hero-food-image:hover {
+    transform: scale(1.02);
 }
 
 @keyframes rotate {
