@@ -1456,6 +1456,10 @@ footer::before {
         display: none;
     }
 
+    .profile-auth-contianer {
+        display: none; /* Hide on mobile by default */
+    }
+
     .navbar {
         position: fixed;
         top: 0;
@@ -1483,6 +1487,16 @@ footer::before {
         width: 100%;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+
+    .navbar .profile-auth-contianer {
+        display: flex; /* Show when menu is active */
+        flex-direction: column;
+        width: 100%;
+        align-items: flex-start;
+        margin-top: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid #e9ecef;
     }
 
     .links {
